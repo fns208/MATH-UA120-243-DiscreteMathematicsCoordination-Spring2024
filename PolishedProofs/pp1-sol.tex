@@ -1,0 +1,143 @@
+\documentclass{article}
+%% This is some font management depending on the TeX “engine” being used.
+%% Nothing to worry about.
+\usepackage{ifxetex}
+\ifxetex
+\usepackage{fontspec}
+\else
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\fi
+
+%% Student: These lines describe some document metadata.
+
+\title{Polished Proof 1: First Draft}
+
+\usepackage{etoolbox}
+\author{%
+	Name
+	\\
+	MATH-UA 120 Discrete Mathematics
+}
+\date{Due: Friday, February 16 on Gradescope.}
+
+
+%% These lines set up the question, answer, and solution environments.
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem{question}{Question}
+
+\newenvironment{answer}[1][Answer]
+{\begin{proof}[#1]\renewcommand\qedsymbol{$\vartriangle$}}
+	{\end{proof}}
+\newenvironment{solution}[1][Solution]
+{\begin{proof}[#1]\renewcommand\qedsymbol{$\blacktriangle$}}
+	{\end{proof}}
+\makeatletter
+\newcommand{\stepenumdepth}{\advance\@enumdepth\@ne}
+\makeatother
+\AtBeginEnvironment{question}{\stepenumdepth}
+\AtBeginEnvironment{answer}{\stepenumdepth}
+\AtBeginEnvironment{solution}{\stepenumdepth}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\tikzstyle{vertex}=[circle,draw,fill=none,inner sep=0pt,outer sep=0pt, minimum width=1ex]
+\tikzstyle{edge}=[draw,thick]
+\usepackage{array}
+
+\usepackage{enumerate}
+
+\usepackage{hyperref}
+%% This is the beginning of the part of the file that describes
+%% the actual text of the document.
+%% That's why it says `\begin{document}' below. :-)
+\begin{document}
+    \maketitle
+	
+\section*{Directions}
+    Create a blank template and complete the assignment in \LaTeX~  on Overleaf, 
+    download the pdf and upload on Gradescope. There are two parts to the assignment: Proof and Reflection.
+
+\section*{Proof Options}
+    Please choose \textbf{one} of the following exercises. Begin with ``Claim:" and write the statement you intend to prove. 
+    Then write ``Proof:" and the proof. You can choose your own end-of-proof marker for flair.
+    \begin{enumerate}
+	\item Let $n$ be an integer. Prove that there exist integers $x, y$ such that $n=12x+4y$ if and only if $n$ is divisible by 4.
+	    \begin{proof}
+	    This statement can be written as 
+		\begin{center}
+		$n = 12x+4y,$ for $ x, y\in \mathbb{Z} \iff 4 \mid n$
+		\end{center}
+	    Let $n\in\mathbb{Z}$.
+		\begin{itemize}	
+		\item[($\Rightarrow$)] Suppose that there exists $x, y\in \mathbb{Z}$ such that $n = 12x+4y$. Note that $n = 12x+4y = 4(3x+y)$ where $3x+y\in \mathbb{Z}$. Therefore $n$ is divisible by 4.
+		
+    		\item[($\Leftarrow$)] Suppose that $4\mid n$. Then there exists an integer $a$ such that $n=4a$. Observe that 
+   		 \begin{align*}
+   		 n & = 4 c \\
+    		& = (12 + -8) c\\
+    		& = (12 + 4 (-2)) c\\
+    		& = 12c + 4 (-2c).
+    		\end{align*}
+    		We have shown that $n = 12c + 4 (-2c)$ for $c, -2c \in\mathbb{Z}$.
+  		\end{itemize}
+	     \end{proof}
+
+	\item Let $n$ be an integer. Prove that there exists an integer $x$ such that $n=4x+5$ if and only if there exists an integer $y$ such that $n=4y+1$.
+	     \begin{proof}
+	     This statement can be written as 
+		\begin{center}
+		$n = 4x+5,$ for $ x\in \mathbb{Z} \iff n = 4y+1,$ for $ y\in \mathbb{Z}$
+		\end{center}
+	    Let $n\in\mathbb{Z}$.
+		\begin{itemize}	
+		\item[($\Rightarrow$)] Suppose that there exists $x\in \mathbb{Z}$ such that $n = 4x+5$. Note that 
+		\begin{align*}
+		n &= 4x + 5\\
+		& = 4x + 4 + 1\\
+		& = 4(x+1) +1.
+		\end{align*}
+		We have shown that $n = 4(x+1) +1$ for $x+1 \in\mathbb{Z}$.
+    		\item[($\Leftarrow$)] Suppose that there exists $y\in \mathbb{Z}$ such that $n = 4y+1$. Observe that 
+   		 \begin{align*}
+   		 n & = 4y + 1 \\
+    		& = 4y - 4 + 5\\
+    		& = 4 (y-1) + 5.
+    		\end{align*}
+    		We have shown that $n = 4 (y-1) + 5$ for $y-1 \in\mathbb{Z}$.
+  		\end{itemize}
+	     \end{proof}
+    \end{enumerate}
+
+\section*{Reflection Prompt}
+    Please provide at least a paragraph explaining your process to completing the proof you have chosen above. You may use the following prompts to guide your response and any additional information needed to support your reflection. Responses consisting of one sentence or less for each of the following prompts will not be acceptable.
+    \begin{itemize}
+        \item What was your strategy/procedure to the proof?
+        \item Were you following a template or problem during the proof?
+        \item What did you find challenging at first?
+        \item When did you realize you had figured it out?
+        \item How much time did you spend on the problem, before and after discovering the answer?
+    \end{itemize}
+
+\section*{Grading Rubric}
+    This assignment will be graded on a scale of 1-15 points.
+    \begin{itemize}
+    \item The proof will be graded out of 12 points via the RVF rubric (9 points) and the remaining 3 points will be given for the proper use of \LaTeX.
+    \item The reflection will be graded out of 3 points. It must be thoughtful and concise, addressing all the prompts provided and any additional information needed to support the reflection.
+    \end{itemize}
+     
+    More information on the RVF rubric can be found 
+    \href{https://drive.google.com/file/d/1P0OBjw-GkX64uCpYcqYmXARapf9MwaiI/view?usp=sharing}{here}. 
+    \href{https://drive.google.com/file/d/14zLx8TDPdD8shbwgMGPAAWdQrUZDz1jd/view?usp=share_link}{Here} 
+    are some examples of past Polished Proof graded work to make sure expectations are clear. \href{https://docs.google.com/document/d/1GcCZI_ueOWXlBC9xIBietOw1uEzFIyg-TzuHvbCZumU/edit?usp=sharing}{Here} are some examples of Reflection expectations.
+
+	
+\end{document}
