@@ -1,0 +1,381 @@
+\documentclass{article}
+% This is a LaTeX file.  It is a text file that is compiled
+% This is a LaTeX file.  It is a text file that is compiled
+% by a program called LaTeX into a pretty PDF file.  
+% If you're viewing this file on Overleaf, 
+% you'll see that PDF in the window to the right.
+%
+% The LaTeX macro language is complicated, so we have inserted
+% lots of documenting comments into the file.  Comments start
+% with `%' and continue to the end of the line.  In Overleaf's
+% window, they are colored blue.
+%
+% Comments prefixed with `Student:' are relevant to students.
+% Skip anything else you don't understand, or ask me.
+%
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% Student: These lines describe some document metadata.
+\title{Problem Set 2}
+\author{%
+% Student: change the next line to your name!
+    Name
+\\  MATH-UA 120 Discrete Mathematics
+}
+\date{due February 9, 2024}
+
+
+\usepackage[headings=runin-fixed-nr]{exsheets}
+% These make enumerates within questions start at the second ("(a)") level, rather than the first ("1.") level.
+\makeatletter
+    \newcommand{\stepenumdepth}{\advance\@enumdepth\@ne}
+\makeatother
+\SetupExSheets{
+    question/pre-body-hook=\stepenumdepth,
+    solution/pre-body-hook=\stepenumdepth,
+}
+\DeclareInstance{exsheets-heading}{runin-nn-np}{default}{
+    runin = true,
+    title-post-code = .\space,
+    join = {
+        main[r,vc]title[l,vc](0pt,0pt);
+    }
+}
+\newif\ifshowsolutions
+% Student: replace `false' with `true' to typeset your solutions.
+% Otherwise they are ignored!
+\showsolutionstrue
+\ifshowsolutions
+    \SetupExSheets{
+        question/pre-hook=\itshape,
+        solution/headings=runin-nn-np,
+        solution/print=true,
+        solution/name=Answer
+    }%
+    \makeatletter%
+    \pretocmd{\@title}{Answers to }%
+    \makeatother%
+\else
+    \SetupExSheets{solution/print=false}
+\fi
+
+% Bug workaround: http://tex.stackexchange.com/a/146536/1402
+%\newenvironment{exercise}{}{}
+\RenewQuSolPair{question}{solution}
+%\let\answer\solution
+%\let\endanswer\endsolution
+\usepackage{manfnt}
+\newcommand{\danger}{\marginpar[\hfill\dbend]{\dbend\hfill}}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{siunitx}
+\DeclareSIUnit\pound{lb}
+\usepackage{hyperref}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{claim}{Claim}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+% We are creating a command "\xor".
+\newcommand{\xor}{\underline{\lor}}
+% This is the beginning of the part of the file that describes
+% the text of the document.
+% That's why it says `\begin{document}' below. :-)
+\begin{document}
+\maketitle
+
+
+
+These are to be written up and turned in to Gradescope.\\
+
+
+
+\ifshowsolutions
+    \SetupExSheets{solution/print=true}
+\else
+    \danger
+ \underline{ \LaTeX  Instructions:}  You can view the source (\texttt{.tex}) file to get some more examples of \LaTeX{} code.  I have commented the source file in places where new \LaTeX{} constructions are used.
+  
+  Remember to change \verb|\showsolutionsfalse| to \verb|\showsolutionstrue|
+    in the document's preamble 
+    (between \verb|\documentclass{article}| and \verb|\begin{document}|)
+\fi
+
+\section*{Assigned Problems}
+
+
+\begin{question}
+    \begin{enumerate}
+        \item Disprove: Every triangle has at least one obtuse angle.
+        \item Disprove: For all integers $x, y$, if $x$ divides $y^2$, then $x$ divides $y$.
+        \item Disprove: For every positive non-prime integer $n$, if some prime $p$ divides $n$, 
+            then some other prime $q$ ($q\neq p$) also divides $n$.
+        \item Disprove: For all integers $n$, if $n^5-n$ is even, then $n$ is even.
+        \item Disprove: For all natural numbers $n$, the integer $n^2+17n+17$ is prime.
+    \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\begin{enumerate}
+\item Note that the sum of all the angles in a triangle must sum to 180 degrees. Then we can have a triangle with angle 60 degrees each and all of them are less than 90 degrees, which is not obtuse. Therefore the statement is false.
+
+\item Consider $x=4$ and $y=2$, which are integers. Note that $4 \mid 2^2$ and $4 \nmid 2$. Therefore the statement is false.
+
+\item Consider $n=9$, which is a positive non-prime integer. Notice that the prime number $p=3$ divides 9. But since $9=3^2$, no other prime number divides 9. Therefore the statement is false.
+
+\item Consider $n=3$, which is an integer. Note that $3^5-3=240$ is even, but $n=3$ is odd. Therefore the statement is false.
+
+\item Consider $n=17$, which is a natural number. Note that $17^2 + 17(17) + 17 = 17(17+17+1) = 17(35)$ has factors other than $1$ and itself, then it is not a prime number. Therefore the statement is false.
+\end{enumerate}
+{\color{red} Rubric:
+\begin{itemize}
+\item each part: 1P for valid example, + 1P for correct argument
+\end{itemize}}
+\end{solution}
+
+\begin{question}
+    Another method to prove that certain Boolean formulas
+    are tautologies is to use the properties in Theorem~7.2
+    together with the fact that $x \rightarrow y$ is equivalent
+    to $(\neg x) \vee y$ (Proposition~7.3)
+    For example, Exercise 7.11, part (b) asks you to establish that the formula $(x \wedge (x \rightarrow y)) \rightarrow y$ is 
+    a tautology.  Here is a derivation of that fact:
+    % This is an "align" environment for aligning
+    % mathematical equations.  Ampersands (&) denote 
+    % separation between columns.  The first one means
+    % there will be alignment around the equal sign.
+    % The double-ampersands put a second column, left-
+    % justified.  Double-backslashes (\\) separate lines.
+    \begin{align*}
+        (x \wedge (x \rightarrow y)) \rightarrow y
+        &= [x \wedge (\neg x \vee y)] \rightarrow y
+        && \text{translate $\rightarrow$} 
+        \\
+        &= [(x \wedge \neg x) \vee (x \wedge y)] \rightarrow y
+        && \text{distributive}
+        \\
+        &= [\mathrm{FALSE} \vee (x\wedge y)] \rightarrow y
+        && \text{inverse elements}
+        \\
+        &= (x\wedge y) \rightarrow y
+        && \text{identity element}
+        \\
+        &= \neg(x\wedge y) \vee y
+        && \text{translate $\rightarrow$}
+        \\
+        &= (\neg x \vee \neg y) \vee y
+        && \text{De~Morgan's laws}
+        \\
+        &= \neg x \vee (\neg y \vee y)
+        && \text{associativity}
+        \\
+        &= \neg x \vee \mathrm{TRUE}
+        && \text{inverse elements}
+        \\
+        &= \mathrm{TRUE}
+        && \text{identity element}
+        \\
+    \end{align*}
+    Use this technique [not truth tables] to prove that these formulas
+    are tautologies:
+    \begin{enumerate}
+        \item $(\neg x \wedge (x \vee y)) \rightarrow y$
+        \item $\neg ( (x \rightarrow y) \rightarrow  y) \rightarrow \neg x$
+    \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\begin{enumerate}
+        \item
+        \begin{align*}
+            (\neg x \wedge (x \vee y)) \rightarrow y
+            &=\neg(\neg x \wedge (x \vee y)) \vee y
+          \\&=(x \vee \neg(x \vee y)) \vee y 
+          \\&=(x \vee (\neg x \wedge \neg y)) \vee y 
+          \\ &=((x \vee \neg x) \wedge ( x \vee \neg y)) \vee y 
+          \\ &=(\mathrm{TRUE} \wedge ( x \vee \neg y)) \vee y 
+          \\ &=( x \vee \neg y) \vee y 
+          \\ &= x \vee (\neg y \vee y )
+          \\ &=x \vee \mathrm{TRUE} = \mathrm{TRUE}
+        \end{align*}
+        \item
+        \begin{align*}
+            \neg ( (x \rightarrow y) \rightarrow  y) \rightarrow \neg x
+            &= \neg ( \neg (x \rightarrow y) \vee  y) \rightarrow \neg x
+          \\&= ( (x \rightarrow y) \wedge  \neg y) \rightarrow \neg x
+          \\&= \neg ( (\neg x \vee y) \wedge  \neg y) \vee \neg x
+          \\&= ( (x \wedge \neg y) \vee   y) \vee \neg x
+          \\&= (x \wedge \neg y) \vee   (y \vee \neg x)
+          \\&= (x \wedge \neg y) \vee  \neg (x \wedge \neg y) = \mathrm{TRUE}
+        \end{align*}
+    \end{enumerate}
+{\color{red} Rubric:
+\begin{itemize}
+\item 5P per part: 
+\item 4P for correct argument
+\item 1P for conclusion
+\item Grader: Please expand on rubric yourself
+\end{itemize}}
+\end{solution}
+
+
+\begin{question}
+	Let the following statements be given.
+		\begin{align*}
+		x &= \text{``There is rain.''}\\
+		y &= \text{``There is traffic.''}\\
+		z &= \text{``The football game is happening.''}\\
+		w &= \text{``The trophy was awarded.''}
+		\end{align*}
+	\begin{enumerate}
+		\item Rewrite the following statements as Boolean expressions.
+			\begin{enumerate}
+			\item If there is no rain or no traffic, then the football game is happening.
+			\item If the football game is happening, then a trophy will be awarded.
+			\end{enumerate}
+		\item Construct a truth table for the statements in part (a).
+		\item Suppose that the statements given in part (a) are true, and suppose also that the trophy was not awarded. Did it rain? Justify your answer using the truth table.
+	\end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+	\begin{enumerate}
+	\item 
+		\begin{enumerate}
+			\item $(\neg x \vee \neg y) \to z$
+			\item $z \to w$
+		\end{enumerate}
+	\item 
+	\[\begin{array}{| c | c | c | c | || c | c | c |}
+	\hline
+	x & y & z & w & \neg x \vee \neg y &(\neg x \vee \neg y) \to z & z \to w\\
+	\hline
+		T & T & T & T & F & T & T\\
+		T & T & T & F & F & T & F\\
+		T & T & F & T & F & T & T\\
+		T & T & F & F & F & T & T\\
+		T & F & T & T & T & T & T\\
+		T & F & T & F & T & T & F\\
+		T & F & F & T & T & F & T\\
+		T & F & F & F & T & F & T\\
+		F & T & T & T & T & T & T\\
+		F & T & T & F & T & T & F\\
+		F & T & F & T & T & F & T\\
+		F & T & F & F & T & F & T\\
+		F & F & T & T & T & T & T\\
+		F & F & T & F & T & T & F\\
+		F & F & F & T & T & F & T\\
+		F & F & F & F & T & F & T\\
+	\hline
+	\end{array}\]
+	\item The only row where $w=False, \neg x \vee \neg y) \to z=True$, and $z \to w=True$ is row 4 where $x=True$. Therefore, it did rain.
+	\end{enumerate}
+{\color{red} Rubric:
+\begin{itemize}
+\item Part a: 2P
+\item Part b: 6P
+\item Part c: 2P 
+\item Grader: Please expand on rubric yourself
+\end{itemize}}
+\end{solution}
+% Student: The following is an example of how to typeset a table
+	% This is an "array" environment for aligning
+	% individual objects. It is similar to "align"
+	% Right after we \begin{array}, we indicate
+	% how we want to align each individual column:
+	% "c" for centered, "r" for right-justified,
+	% "l" ("ell") for left-justified.
+	% The total number of c's, r's, and l's should match
+	% the number of columns.
+	% We can use this to form a table. To create the borders,
+	% we use "|" (the notation for "divides") to create a
+	% vertical line between each column.
+	% After each line, double-backslashes (\\) separate lines.
+	% If we want a horizontal line after each line, 
+	% we use "\hline".
+	%For math environment, we can use "$$" or "\[ \]".
+	%\[\begin{array}{| c | c || c |}
+	%\hline
+	%x & y & x \vee y \\
+	%\hline
+	%T & T & T \\ 
+	%T & F & T \\
+	%F & T & T \\
+	%F & F & F \\
+	%\hline
+	%\end{array}\]
+
+\begin{question}
+    Suppose each single character stored in a computer uses eight bits. 
+    Then each character is represented by a different sequence of eight 0's and 1's called a bit pattern, 
+    such as 10011101 or 00100010. Provide a brief reasoning for the following questions.
+        \begin{enumerate}
+            \item How many different bit patterns are there?
+            \item How many different bit patterns are palindromes (the same backwards as forwards)?
+            \item How many different bit patterns have an even number of 1's?
+            \item How many different bit patterns have the property that their second and fourth digits are 1's?
+            \item How many different bit patterns have the property that their second or fourth digits are 1's?
+        \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+    \begin{enumerate}
+        \item Since there are eight digits and two choices of $\{0, 1\}$, there are $2^8$ different bit patterns. 
+        \item Since the pattern repeats halfway, there's only a choice for the first four digits; there are $2^4$ different palindromes.
+        \item To ensure there are an even number of 1's, the first seven digits can be anything and we only need to adjust the eighth digit; meaning there is only one choice for the eighth digit. There are $2^7$ different bit patterns with an even number of 1's.
+        \item Since there are no restrictions on everything else that is not second and fourth digit, there are $2^6$ different bit patterns where the second and fourth digit are 1's.
+        \item We need to count the different bit patterns where only the second digit is a 1, only the fourth digit is a 1, and the second and the fourth digit is a 1. There are $2^6+2^6+2^6$ different bit patterns where the second or fourth digit are 1's.
+    \end{enumerate}
+    
+{\color{red} Rubric:
+\begin{itemize}
+\item Per part: 1P for answer + 1P for reasoning
+\item Try to give partial credit if some reasoning is correct and that reasoning translates over in some part of the final answer.
+\end{itemize}}
+\end{solution}
+
+\begin{question}
+    Suppose we want to make a list of length 5 from the letters $A, B, C, D, E, F, G, H, I, J$. Provide a brief reasoning for the following questions.
+        \begin{enumerate}
+            \item How many such lists can be made if repetition is not allowed and the list must begin with a vowel?
+            \item How many such lists can be made if repetition is not allowed and the list must contain exactly one $A$?
+            \item How many such lists can be made if repetition is not allowed and the list must begin with a vowel and end with a vowel?
+            \item How many such lists can be made if repetition is not allowed, and the list must begin with a vowel or end with a vowel?
+            \item How many such lists can be made if repetition is not allowed and the list must contain exactly two vowels?
+        \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+Note that there are 10 letters to choose from and out of those letters, $A, E, I$ are vowels.
+    \begin{enumerate}
+        \item Since there are five positions where the first element has 3 choices of vowels and no repetition is allowed, there are $3\cdot 9 \cdot 8\cdot 7\cdot 6$ lists with no repetition and begins with a vowel. 
+        \item Consider the first element of the list must be an $A$, then the remaining elements of the list can be any of the 9 remaining letters, which are $9 \cdot 8\cdot 7\cdot 6$ different possibilities. Since the letter $A$ can be in any of the five positions in the list, there are $5\cdot 9 \cdot 8\cdot 7\cdot 6$ lists with no repetition and exactly one $A$.
+        \item There are three vowels; so there are $3\cdot 2$ possible pairs of vowels. For the remaining three positions in the list, there are $8\cdot 7\cdot 6$ different possibilities. We know there are $(3\cdot 2)(8\cdot 7\cdot 6)$ lists with no repetition and the list must begin with a vowel and end with a vowel.
+        \item From part (c), we know there are $(3\cdot 2)(8\cdot 7\cdot 6)$ lists with no repetition and the list must begin with a vowel and end with a vowel. Now we count all such lists with no repetition and the list must begin with a vowel and does not end with a vowel: $(3\cdot 7)( 8\cdot 7\cdot 6)$, which is the same as all such lists with no repetition and the list must not begin with a vowel and does end with a vowel. Therefore there are $(3\cdot 2)(8\cdot 7\cdot 6) + 2(3\cdot 7)( 8\cdot 7\cdot 6)$ lists with no repetition and begins with a vowel or ends with a vowel.
+        \item There are three vowels; so there are $3\cdot 2$ possible pairs of vowels. For the remaining three positions in the list, there are $7\cdot 6\cdot 5$ different possibilities. Since there are 2 vowels that can be placed in any of the 5 positions, there are $4+3+2+1=10$ possibilities, because there are four cases: 
+        		\begin{enumerate}
+		\item if one vowel is in the first position, then the second vowel has 4 possible positions,
+		\item if one vowel is in the second position, then the second vowel has 3 possible positions (we exclude the first position since it is accounted for in the previous case)
+		\item if one vowel is in the third position, then the second vowel has 2 possible positions, 
+		\item and if one vowel is in the fourth position, then the second vowel has 1 possible position.
+		\end{enumerate}
+	Therefore, there are $10\cdot(3\cdot 2)(7\cdot 6\cdot 5)$ lists with no repetition and exactly two vowels.
+    \end{enumerate}
+
+{\color{red} Rubric:
+\begin{itemize}
+\item Per part: 1P for answer + 1P for reasoning
+\item Try to give partial credit if some reasoning is correct and that reasoning translates over in some part of the final answer.
+\end{itemize}}
+\end{solution}
+
+\end{document}

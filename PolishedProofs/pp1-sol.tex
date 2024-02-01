@@ -70,24 +70,23 @@
     Please choose \textbf{one} of the following exercises. Begin with ``Claim:" and write the statement you intend to prove. 
     Then write ``Proof:" and the proof. You can choose your own end-of-proof marker for flair.
     \begin{enumerate}
-	\item Let $n$ be an integer. Prove that there exist integers $x, y$ such that $n=12x+4y$ if and only if $n$ is divisible by 4.
+	\item Let $n$ be an integer. Prove that there exist integers $x, y$ such that $n=12x+8y$ if and only if $n$ is divisible by 4.
 	    \begin{proof}
 	    This statement can be written as 
 		\begin{center}
-		$n = 12x+4y,$ for $ x, y\in \mathbb{Z} \iff 4 \mid n$
+		$n = 12x+8y,$ for $ x, y\in \mathbb{Z} \iff 4 \mid n$
 		\end{center}
 	    Let $n\in\mathbb{Z}$.
 		\begin{itemize}	
-		\item[($\Rightarrow$)] Suppose that there exists $x, y\in \mathbb{Z}$ such that $n = 12x+4y$. Note that $n = 12x+4y = 4(3x+y)$ where $3x+y\in \mathbb{Z}$. Therefore $n$ is divisible by 4.
+		\item[($\Rightarrow$)] Suppose that there exists $x, y\in \mathbb{Z}$ such that $n = 12x+8y$. Note that $n = 12x+8y = 4(3x+2y)$ where $3x+2y\in \mathbb{Z}$. Therefore $n$ is divisible by 4.
 		
     		\item[($\Leftarrow$)] Suppose that $4\mid n$. Then there exists an integer $a$ such that $n=4a$. Observe that 
    		 \begin{align*}
    		 n & = 4 c \\
     		& = (12 + -8) c\\
-    		& = (12 + 4 (-2)) c\\
-    		& = 12c + 4 (-2c).
+    		& = 12c + 8 (-c).
     		\end{align*}
-    		We have shown that $n = 12c + 4 (-2c)$ for $c, -2c \in\mathbb{Z}$.
+    		We have shown that $n = 12c + 8 (-c)$ for $c, -c \in\mathbb{Z}$.
   		\end{itemize}
 	     \end{proof}
 

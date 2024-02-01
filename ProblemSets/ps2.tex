@@ -1,0 +1,263 @@
+\documentclass{article}
+% This is a LaTeX file.  It is a text file that is compiled
+% This is a LaTeX file.  It is a text file that is compiled
+% by a program called LaTeX into a pretty PDF file.  
+% If you're viewing this file on Overleaf, 
+% you'll see that PDF in the window to the right.
+%
+% The LaTeX macro language is complicated, so we have inserted
+% lots of documenting comments into the file.  Comments start
+% with `%' and continue to the end of the line.  In Overleaf's
+% window, they are colored blue.
+%
+% Comments prefixed with `Student:' are relevant to students.
+% Skip anything else you don't understand, or ask me.
+%
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% Student: These lines describe some document metadata.
+\title{Problem Set 2}
+\author{%
+% Student: change the next line to your name!
+    Name
+\\  MATH-UA 120 Discrete Mathematics
+}
+\date{due February 9, 2024}
+
+
+\usepackage[headings=runin-fixed-nr]{exsheets}
+% These make enumerates within questions start at the second ("(a)") level, rather than the first ("1.") level.
+\makeatletter
+    \newcommand{\stepenumdepth}{\advance\@enumdepth\@ne}
+\makeatother
+\SetupExSheets{
+    question/pre-body-hook=\stepenumdepth,
+    solution/pre-body-hook=\stepenumdepth,
+}
+\DeclareInstance{exsheets-heading}{runin-nn-np}{default}{
+    runin = true,
+    title-post-code = .\space,
+    join = {
+        main[r,vc]title[l,vc](0pt,0pt);
+    }
+}
+\newif\ifshowsolutions
+% Student: replace `false' with `true' to typeset your solutions.
+% Otherwise they are ignored!
+\showsolutionsfalse
+\ifshowsolutions
+    \SetupExSheets{
+        question/pre-hook=\itshape,
+        solution/headings=runin-nn-np,
+        solution/print=true,
+        solution/name=Answer
+    }%
+    \makeatletter%
+    \pretocmd{\@title}{Answers to }%
+    \makeatother%
+\else
+    \SetupExSheets{solution/print=false}
+\fi
+
+% Bug workaround: http://tex.stackexchange.com/a/146536/1402
+%\newenvironment{exercise}{}{}
+\RenewQuSolPair{question}{solution}
+%\let\answer\solution
+%\let\endanswer\endsolution
+\usepackage{manfnt}
+\newcommand{\danger}{\marginpar[\hfill\dbend]{\dbend\hfill}}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{siunitx}
+\DeclareSIUnit\pound{lb}
+\usepackage{hyperref}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{claim}{Claim}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+% We are creating a command "\xor".
+\newcommand{\xor}{\underline{\lor}}
+% This is the beginning of the part of the file that describes
+% the text of the document.
+% That's why it says `\begin{document}' below. :-)
+\begin{document}
+\maketitle
+
+
+
+These are to be written up and turned in to Gradescope.\\
+
+
+
+\ifshowsolutions
+    \SetupExSheets{solution/print=true}
+\else
+    \danger
+ \underline{ \LaTeX  Instructions:}  You can view the source (\texttt{.tex}) file to get some more examples of \LaTeX{} code.  I have commented the source file in places where new \LaTeX{} constructions are used.
+  
+  Remember to change \verb|\showsolutionsfalse| to \verb|\showsolutionstrue|
+    in the document's preamble 
+    (between \verb|\documentclass{article}| and \verb|\begin{document}|)
+\fi
+
+\section*{Assigned Problems}
+
+
+\begin{question}
+    \begin{enumerate}
+        \item Disprove: Every triangle has at least one obtuse angle.
+        \item Disprove: For all integers $x, y$, if $x$ divides $y^2$, then $x$ divides $y$.
+        \item Disprove: For every positive non-prime integer $n$, if some prime $p$ divides $n$, 
+            then some other prime $q$ ($q\neq p$) also divides $n$.
+        \item Disprove: For all integers $n$, if $n^5-n$ is even, then $n$ is even.
+        \item Disprove: For all natural numbers $n$, the integer $n^2+17n+17$ is prime.
+    \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+
+\begin{question}
+    Another method to prove that certain Boolean formulas
+    are tautologies is to use the properties in Theorem~7.2
+    together with the fact that $x \rightarrow y$ is equivalent
+    to $(\neg x) \vee y$ (Proposition~7.3)
+    For example, Exercise 7.11, part (b) asks you to establish that the formula $(x \wedge (x \rightarrow y)) \rightarrow y$ is 
+    a tautology.  Here is a derivation of that fact:
+    % This is an "align" environment for aligning
+    % mathematical equations.  Ampersands (&) denote 
+    % separation between columns.  The first one means
+    % there will be alignment around the equal sign.
+    % The double-ampersands put a second column, left-
+    % justified.  Double-backslashes (\\) separate lines.
+    \begin{align*}
+        (x \wedge (x \rightarrow y)) \rightarrow y
+        &= [x \wedge (\neg x \vee y)] \rightarrow y
+        && \text{translate $\rightarrow$} 
+        \\
+        &= [(x \wedge \neg x) \vee (x \wedge y)] \rightarrow y
+        && \text{distributive}
+        \\
+        &= [\mathrm{FALSE} \vee (x\wedge y)] \rightarrow y
+        && \text{inverse elements}
+        \\
+        &= (x\wedge y) \rightarrow y
+        && \text{identity element}
+        \\
+        &= \neg(x\wedge y) \vee y
+        && \text{translate $\rightarrow$}
+        \\
+        &= (\neg x \vee \neg y) \vee y
+        && \text{De~Morgan's laws}
+        \\
+        &= \neg x \vee (\neg y \vee y)
+        && \text{associativity}
+        \\
+        &= \neg x \vee \mathrm{TRUE}
+        && \text{inverse elements}
+        \\
+        &= \mathrm{TRUE}
+        && \text{identity element}
+        \\
+    \end{align*}
+    Use this technique [not truth tables] to prove that these formulas
+    are tautologies:
+    \begin{enumerate}
+        \item $(\neg x \wedge (x \vee y)) \rightarrow y$
+        \item $\neg ( (x \rightarrow y) \rightarrow  y) \rightarrow \neg x$
+    \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+
+
+\begin{question}
+	Let the following statements be given.
+		\begin{align*}
+		x &= \text{``There is rain.''}\\
+		y &= \text{``There is traffic.''}\\
+		z &= \text{``The football game is happening.''}\\
+		w &= \text{``The trophy was awarded.''}
+		\end{align*}
+	\begin{enumerate}
+		\item Rewrite the following statements as Boolean expressions.
+			\begin{enumerate}
+			\item If there is no rain or no traffic, then the football game is happening.
+			\item If the football game is happening, then a trophy will be awarded.
+			\end{enumerate}
+		\item Construct a truth table for the statements in part (a).
+		\item Suppose that the statements given in part (a) are true, and suppose also that the trophy was not awarded. Did it rain? Justify your answer using the truth table.
+	\end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+% Student: The following is an example of how to typeset a table
+	% This is an "array" environment for aligning
+	% individual objects. It is similar to "align"
+	% Right after we \begin{array}, we indicate
+	% how we want to align each individual column:
+	% "c" for centered, "r" for right-justified,
+	% "l" ("ell") for left-justified.
+	% The total number of c's, r's, and l's should match
+	% the number of columns.
+	% We can use this to form a table. To create the borders,
+	% we use "|" (the notation for "divides") to create a
+	% vertical line between each column.
+	% After each line, double-backslashes (\\) separate lines.
+	% If we want a horizontal line after each line, 
+	% we use "\hline".
+	%For math environment, we can use "$$" or "\[ \]".
+	%\[\begin{array}{| c | c || c |}
+	%\hline
+	%x & y & x \vee y \\
+	%\hline
+	%T & T & T \\ 
+	%T & F & T \\
+	%F & T & T \\
+	%F & F & F \\
+	%\hline
+	%\end{array}\]
+
+\begin{question}
+    Suppose each single character stored in a computer uses eight bits. 
+    Then each character is represented by a different sequence of eight 0's and 1's called a bit pattern, 
+    such as 10011101 or 00100010. Provide a brief reasoning for the following questions.
+        \begin{enumerate}
+            \item How many different bit patterns are there?
+            \item How many different bit patterns are palindromes (the same backwards as forwards)?
+            \item How many different bit patterns have an even number of 1's?
+            \item How many different bit patterns have the property that their second and fourth digits are 1's?
+            \item How many different bit patterns have the property that their second or fourth digits are 1's?
+        \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+
+\begin{question}
+    Suppose we want to make a list of length 5 from the letters $A, B, C, D, E, F, G, H, I, J$. Provide a brief reasoning for the following questions.
+        \begin{enumerate}
+            \item How many such lists can be made if repetition is not allowed and the list must begin with a vowel?
+            \item How many such lists can be made if repetition is not allowed and the list must contain exactly one $A$?
+            \item How many such lists can be made if repetition is not allowed and the list must begin with a vowel and end with a vowel?
+            \item How many such lists can be made if repetition is not allowed, and the list must begin with a vowel or end with a vowel?
+            \item How many such lists can be made if repetition is not allowed and the list must contain exactly two vowels?
+        \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+
+\end{document}
