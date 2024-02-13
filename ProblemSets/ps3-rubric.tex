@@ -1,0 +1,456 @@
+\documentclass{article}
+% This is a LaTeX file.  It is a text file that is compiled
+% by a program called LaTeX into a pretty PDF file.  
+% If you're viewing this file on Overleaf, you'll see that PDF 
+% in the window to the right.
+%
+% The LaTeX macro language is complicated, so we have inserted
+% lots of documenting comments into the file.  Comments start
+% with `%' and continue to the end of the line.  In Overleaf's
+% window, they are colored green.
+%
+% Comments prefixed with `Student:' are relevant to students.
+% Skip anything else you don't understand, or ask me.
+%
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% Student: These lines describe some document metadata.
+\title{Problem Set 3}
+\author{%
+% Student: change the next line to your name!
+    Name
+\\  MATH-UA 120 Discrete Mathematics
+}
+\date{due February 23, 2024}
+
+
+\usepackage[headings=runin-fixed-nr]{exsheets}
+% These make enumerates within questions start at the second ("(a)") level, rather than the first ("1.") level.
+\makeatletter
+    \newcommand{\stepenumdepth}{\advance\@enumdepth\@ne}
+\makeatother
+\SetupExSheets{
+    question/pre-body-hook=\stepenumdepth,
+    solution/pre-body-hook=\stepenumdepth,
+}
+\DeclareInstance{exsheets-heading}{runin-nn-np}{default}{
+    runin = true,
+    title-post-code = .\space,
+    join = {
+        main[r,vc]title[l,vc](0pt,0pt);
+    }
+}
+\newif\ifshowsolutions
+% Student: replace `false' with `true' to typeset your solutions.
+% Otherwise they are ignored!
+\showsolutionstrue
+\ifshowsolutions
+    \SetupExSheets{
+        question/pre-hook=\itshape,
+        solution/headings=runin-nn-np,
+        solution/print=true,
+        solution/name=Answer
+    }%
+    \makeatletter%
+    \pretocmd{\@title}{Answers to }%
+    \makeatother%
+\else
+    \SetupExSheets{solution/print=false}
+\fi
+
+% Bug workaround: http://tex.stackexchange.com/a/146536/1402
+%\newenvironment{exercise}{}{}
+\RenewQuSolPair{question}{solution}
+%\let\answer\solution
+%\let\endanswer\endsolution
+\usepackage{manfnt}
+\newcommand{\danger}{\marginpar[\hfill\dbend]{\dbend\hfill}}
+
+\usepackage{subcaption}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{siunitx}
+\DeclareSIUnit\pound{lb}
+\usepackage{hyperref}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{claim}{Claim}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+% This is the beginning of the part of the file that describes
+% the text of the document.
+% That's why it says `\begin{document}' below. :-)
+\begin{document}
+\maketitle
+
+
+
+These are to be written up and turned in to Gradescope.\\
+
+
+
+\ifshowsolutions
+    \SetupExSheets{solution/print=true}
+\else
+    \danger
+ \underline{ \LaTeX  Instructions:}  You can view the source (\texttt{.tex}) file to get some more examples of \LaTeX{} code.  I have commented the source file in places where new \LaTeX{} constructions are used.
+  
+  Remember to change \verb|\showsolutionsfalse| to \verb|\showsolutionstrue|
+    in the document's preamble 
+    (between \verb|\documentclass{article}| and \verb|\begin{document}|)
+\fi
+
+\section*{Assigned Problems}
+
+\begin{question}{5}
+   \begin{enumerate}
+   \item Consider the following subsets of $\N$.
+       \begin{align*}
+           A &= \text{The set of all even numbers.}\\
+           B &= \text{The set of all prime numbers.}\\
+           C &= \text{The set of all perfect squares.}\\
+           D &= \text{The set of all multiples of 10.}
+       \end{align*}
+       Using \textbf{only} the symbols $3, A, B, C, D, \N, \in, \subseteq, =, \neq, \cap, \cup, \times, -, \emptyset$, ``('', and  ``)'', rewrite the following statements in set notation. 
+           \begin{enumerate}
+               \item None of the perfect squares are prime numbers. 
+               \item The number 3 is a prime number that is not even.
+               \item If you take all the prime numbers, all the even numbers, all the perfect squares, and all the multiples of 10, you still won't have all the natural numbers.
+           \end{enumerate}
+   
+   \item Consider the following subsets of the set of all students at some university. 
+       \begin{align*}
+           F &= \text{The set of all freshmen.}\\
+           S &= \text{The set of all seniors.}\\
+           M &= \text{The set of all math majors.}\\
+           C &= \text{The set of all CS majors.}
+       \end{align*}
+           \begin{enumerate}
+               \item Using only the symbols $F, S, M, C, | ~ |, \cap, \cup, -$, and $>$, translate the following statement into the language of set theory. 
+               \begin{quote}
+                   ``There are more freshmen who aren't math majors than there are senior CS majors.''
+               \end{quote}
+               \item Translate the following statement in set theory into everyday English. 
+               $$(F\cap M)\subseteq C$$
+           \end{enumerate}
+   \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\begin{enumerate}
+\item 
+    \begin{enumerate}
+    \item $B\cap C = \emptyset$
+    \item $3\in B- A$
+    \item $\N -(A\cup B\cup C\cup D) \neq \emptyset$
+    \end{enumerate}
+\item 
+    \begin{enumerate}
+    \item $|F - M| > |S\cap C|$
+    \item All freshmen math majors double major in CS.
+    \end{enumerate}
+\end{enumerate}
+{\color{red} Rubric:
+\begin{itemize}
+\item 1P each
+\end{itemize}}
+\end{solution}
+
+\begin{question}{10}
+Describe explicitly in English the following sets, then give their cardinality.
+
+\begin{enumerate}
+	\item $\{x \in 2^{\Z} : 5 \in x \}$
+	\item $\{x \in 2^{\Z} : x \subseteq \{ 1, 2, 3\} \}$
+	\item $\{x \in 2^{\Z} : x \subseteq \{ 1, 2, \{3, 4\} \} \}$
+	\item $\{x \in 2^{\Z} : x \in \{ 1, 2, \{3, 4\} \} \}$
+	\item $\{x \in 2^{\Z} : y \in x \implies y = 0 \}$
+\end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\begin{enumerate}
+	\item This is the set of all subsets of $\Z$ that contain $5$. There are infinitely many such subsets, like $\{5\}, \{5,6\}, \{5,6, 7\}, \dots$, so $\left | \{x \in 2^{\Z} : 5 \in x \} \right |$ is infinite.
+	\item This is the set of all subsets of $\Z$ that are also subsets of $\{1, 2, 3\}$, so it is actually the set of all subsets of $\{1,2,3\}$. Therefore
+	\[
+	\left |\{x \in 2^{\Z} : x \subseteq \{ 1, 2, 3\} \} \right | = \left | 2^{\{1, 2, 3\}} \right | = 2^{|\{ 1, 2, 3\}|} = 2^3 = 8.
+	\]
+	
+	\item This is the set of all subsets of $\Z$ that are also subsets of $ \{ 1, 2, \{3, 4\} \} \}$. But $\{ 3, 4 \}$ is not an element of $\Z$, so it means that set in question is the set of all subsets of $\{1,2\}$. Therefore, as above, 
+	\[
+	\left |\{x \in 2^{\Z} : x \subseteq \{ 1, 2, \{3, 4\} \} \} \right | = 2^{|\{1,2 \}|} = 2^2 = 4.
+	\]
+	
+	\item This is the set of all subsets of $\Z$ that are also elements of $ \{ 1, 2, \{3, 4\} \} \}$. But out of these elements, there is only one subset of $\Z$, namely $\{ 3, 4 \}$, and therefore the set in question is the set $\{ \{3,4\} \}$, which contains the one element $\{3,4\}$. Therefore
+	\[
+	\left | \{x \in 2^{\Z} : x \in \{ 1, 2, \{3, 4\} \} \} \right | = 1.
+	\]
+	
+	\item This is the set of all subsets of $\Z$ such that if there is an element in the subset, then it is $0$. In other words, such a subset can only contain the element $0$, so it is $\{ 0 \}$... or $\emptyset$! Therefore, the set in question is $\{ \emptyset, \{0\}\}$, and thus
+	\[
+	\left | \{x \in 2^{\Z} : y \in x \implies y = 0 \} \right | = 2.
+	\]
+\end{enumerate}
+{\color{red} Rubric:
+\begin{itemize}
+\item 2P for each part
+\item Grader: Please expand on rubric yourself.
+\end{itemize}}
+\end{solution}
+
+
+\begin{question}{12}
+\begin{enumerate}
+	\item For each of the following statements, describe it in English, and say if it is true or false (without proof). Then write its negation using quantifiers, and express this negation in English. For instance, the statement $\forall x \in \Z \; x < 0$ means every integer is negative, and it is false. Its negation is $\exists x \in \Z \; x \geq 0$, which means that there exists a nonnegative integer.
+	
+	\begin{enumerate}
+		\item $\forall x \in \Z, \; \exists y \in \Z, \; x^2 + y = 4$
+		\item $\exists y \in \Z, \; \forall x \in \Z, \; x^2 + y = 4$
+		\item $\forall n \in \Z, \; \exists k \in \Z, \; \exists d \in \Z, \; k+ n = 2d$
+		\item $\exists n \in \Z, \; \forall k \in \Z, \; \exists d \in \Z, \; k+ n = 2d$
+	\end{enumerate}
+	
+	\item For each of the statements (iii) and (iv): prove it if it is true, or prove the negation if it is false. These proofs are short.
+\end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item The statement means to any integer squared, we can add another integer to get 4. This is true. Its negation is
+		\[
+		\exists x \in \Z, \; \forall y \in \Z, \; x^2 + y \neq 4
+		\]
+		which means that we can find an integer squared such that, regardless of what other integer we add to it, we never get a sum equal to 4. 
+		
+		\item The statement means we can find an integer and add any other integer squared whose sum is 4. This is false. Its negation is
+		\[
+		\forall y \in \Z, \; \exists x \in \Z, \; x^2 + y \neq 4
+		\]
+		which means to any integer, we can add another integer squared and we never get a sum equal to 4.
+		
+		
+		\item The statement means that to any integer, we can add another integer to get an even number. This is true. Its negation is
+		\[
+		\exists n \in \Z, \; \forall k \in \Z, \; \forall d \in \Z, \; k + n \neq 2d.
+		\]
+		which means that we can find an integer such that, regardless of what other integer we add to it, we will never get an  even sum.
+		
+		\item The statement means that there exists an integer such that, regardless of what other integer we add to it, we always get an even sum. This is false. Its negation is
+		\[
+		\forall n \in \Z, \; \exists k \in \Z, \; \forall d \in \Z, \; k + n \neq 2d.
+		\]
+		which means that to any integer, we can add another integer and get a sum which is not even.
+		
+	\end{enumerate}
+	\item \begin{itemize}
+		\item For part (c): Let us show that
+		\[
+		\forall n \in \Z, \; \exists k \in \Z, \; \exists d \in \Z, \; k + n = 2d
+		\]
+		Let $n \in \Z$. Take $k = n$ and $d = n$. Then $k+n = n + n = 2n = 2d$.
+		
+		\item For part (d): Let us show that
+		\[
+		\forall n \in \Z, \; \exists k \in \Z, \; \forall d \in \Z, \; k + n \neq 2d
+		\]
+		Let $n \in \Z$. Take $k = n + 1$. Then $k + n = n+1+n = 2n + 1$ is odd, so it is not even, that is, it cannot be written as $2d$ for any $d \in \Z$.
+		
+	\end{itemize}
+	
+\end{enumerate}
+
+{\color{red} Rubric:
+\begin{itemize}
+\item Part a: 2P for each part
+\item Part b: 2P for each part
+\item Grader: Please expand on rubric yourself.
+\end{itemize}}
+\end{solution}
+
+
+
+\begin{question}{4}
+   Let $I=\{1, 2, \dots, n\}$. Given a collection of sets $\{A_1,A_2,\dots, A_n\}$, denoted by $\{A_i\}_{i\in I}$. $\{A_i\}_{i\in I}$ is said to be \textbf{disjoint} if $\cap_{i\in I}A_i=\emptyset$, and it is said to be \textbf{pairwise disjoint} if $A_i\cap A_j=\emptyset$ whenever $i\neq j$. Prove that if $\{A_i\}_{i\in I}$ is pairwise disjoint, then $\{A_i\}_{i\in I}$ is disjoint.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+ Let $I=\{1, 2, \dots, n\}$. Suppose a collection of sets $\{A_1,A_2,\dots, A_n\}$, denoted by $\{A_i\}_{i\in I}$, is pairwise disjoint. Then for $i, j\in I$ where $i\neq j$, $A_i\cap A_j=\emptyset$. Note that 
+ \begin{align*}
+ \cap_{i\in I}A_i &= A_1 \cap A_2 \cap \cdots\cap A_n\\
+ &= (A_1 \cap A_2) \cap \cdots\cap A_n\\
+ &= \emptyset \cap A_3\cap \cdots\cap A_n\\
+ &= (\emptyset \cap A_3)\cap \cdots\cap A_n\\
+ & = \emptyset.
+ \end{align*}
+Since $A_1 \cap A_2 = \emptyset$ and the intersection of any set with the empty set is the empty set, $ \cap_{i\in I}A_i = \emptyset$. Then $\{A_i\}_{i\in I}$ is disjoint. Therefore, if $\{A_i\}_{i\in I}$ is pairwise disjoint, then $\{A_i\}_{i\in I}$ is disjoint.
+
+{\color{red} Rubric:
+\begin{itemize}
+\item 1P for clearly defining all variables
+\item 1P stating pairwise disjoint definition
+\item 2P for explaining/showing the intersection with the empty set
+\end{itemize}}
+\end{solution}
+
+\begin{question}{4}
+   In a survey of soda preference between three brands, $A, B,$ and $C$, it found that 60 people like $A$, 55 like $B$, 40 like $C$, 20 like $A$ and $B$, 35 like $B$ and $C$, 15 like $A$ and $C$, and 10 like all three sodas. Assuming that everyone likes at least one of the three soda brands, find the following:
+   \begin{enumerate}
+   \item the number of people who participated in the survey,
+   \item the number of people who like soda $B$ only,
+   \item the number of people who like sodas $A$ and $C$, but not soda $B$, 
+   \item and the number of people who does not like soda $B$.
+   \end{enumerate}
+   
+   \textit{ Hint: Draw a Venn diagram with three sets.}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+   \begin{enumerate}
+   \item 
+   \begin{align*}
+   |A \cup B \cup C| & = |A| + |B| + |C| - |A\cap B| - |A\cap C| - |B\cap C| + |A\cap B \cap C| \\ 
+   &= 60 + 55 + 40 - 20 - 35 - 15 + 10 = 95
+   \end{align*}
+   \item 
+   \begin{align*}
+   |B-A-C| &= |B| - (|A\cap B| + |B\cap C| - |A\cap B\cap C|)\\
+   & = 55- (20 + 35 - 10) = 10
+   \end{align*}
+   \item 
+   \begin{align*}
+   |A\cap C - B| & = |A\cap C| - |A\cap B \cap C| \\
+   & = 15 - 10 = 5
+   \end{align*} 
+   \item 
+   \begin{align*}
+   |(A\cup B\cup C) - B| &= |A\cup B\cup C| - |B-A-C|\\
+   & = 95- 5 = 90
+   \end{align*}
+   \end{enumerate}
+
+{\color{red} Rubric:
+\begin{itemize}
+\item 1P per part
+\end{itemize}}
+\end{solution}
+
+\begin{question}{5}
+   Let $A = \{ x\in \mathbb{Z} : 100 \leq x \leq 999\}$ and 
+   $A_i=\{ x\in A:  \text{ $i$-th digit of $x$ is $i$ }\}$. Find $|A_1\cup A_2\cup A_3|$.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+Note that 
+\begin{align*}
+A_1 & = \{ 100, 101, 102, \dots, 199\}, \\
+A_2 & = \{  120, 121, 122, \dots, 129,  220, 221, 222, \dots, 229,  320, 321, 322, \dots, 329, && \dots, \\
+& && 920, 921, 922, \dots, 929\},\\
+\text{ and } A_3 & = \{ 103, 113, 123, \dots, 193, 203, 213, 223, \dots, 293,  303, 313, 323, \dots, 393, && \dots, \\
+& && 903, 913, 923, \dots, 993\}.
+\end{align*}
+Then $|A_1| = 100, |A_2| = 90,$ and $|A_3| = 90$. Further note that
+\begin{align*}
+A_1 \cap A_2 &= \{ 120, 121, 122, \dots, 129\}\\
+A_1 \cap A_3 &= \{ 103, 113, 123, \dots, 193\}\\
+A_2 \cap A_3 &= \{ 123, 223, 323, \dots, 923\}\\
+A_1 \cap A_2 \cap A_3 &= \{ 123\}.
+\end{align*}
+Then $|A_1 \cap A_2| = 10, |A_1\cap A_3| = 10, |A_2\cap A_3| = 9$, and $|A_1\cap A_2\cap A_3| = 1$. Therefore, 
+\begin{align*}
+|A_1\cup A_2\cup A_3| & = |A_1| + |A_2| + |A_3| - |A_1\cap A_2| -|A_1\cap A_3| - |A_2\cap A_3| + |A_1\cap A_2\cap A_3|\\
+& = 100 + 90 + 90 -10 - 10 - 9 +1 = 252.
+\end{align*}
+{\color{red} Rubric:
+\begin{itemize}
+\item 3P for correctly listing/describing the elements in each set, 1P for counting each set, and 1P for final answer.
+\end{itemize}}
+\end{solution}
+
+\begin{question}{6}
+   Prove for any sets $A$ and $B$, $A\Delta (A\cap B) = A-B$.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\begin{proof}[Proof 1]
+Let $A$ and $B$ be sets. We will prove the two identities: 
+
+$A\Delta (A\cap B) \subseteq A-B$ and $A\Delta (A\cap B) \supseteq A-B$.
+\begin{itemize}
+\item[($\Rightarrow$)] Let $x\in A\Delta (A\cap B)$. Then $x\in A-(A\cap B)$ or $x\in(A\cap B)-A$. If $x\in A-(A\cap B)$, then $x\in A$ and $x\notin A\cap B$. Since $x\in A$, $x\notin A\cap B$ implies $x\notin B$. Then $x\in A-B$. If $x\in(A\cap B)-A$, then $x\in A\cap B$ and $x\notin A$. Since $x\in A\cap B$, $x\in A$ and $x\in B$. But we can't have $x\notin A$ and $x\in A$, then $(A\cap B)-A = \emptyset$. Therefore $A\Delta (A\cap B) \subseteq A-B$.
+
+\item[$(\Leftarrow$)] Let $x\in A-B$. Then $x\in A$ and $x\notin B$. Since $A\cap B\subseteq B$, $x\notin A\cap B$. Then $x\in A-(A\cap B)$. Since $A\cap B\subseteq A$, then $(A\cap B)- A=\emptyset$ and $A-(A\cap B) = (A-(A\cap B))\cup \emptyset = (A-(A\cap B))\cup ((A\cap B)- A)$. Since $x\in A-(A\cap B)$, $x\in (A-(A\cap B))\cup ((A\cap B)- A) = A\Delta (A\cap B)$. Therefore, $A-B \subseteq A\Delta (A\cap B)$.
+
+\end{itemize}
+Since $A\Delta (A\cap B) \subseteq A-B$ and $A\Delta (A\cap B) \supseteq A-B$, we conclude that $A\Delta (A\cap B) = A-B$.
+\end{proof}
+\begin{proof}[Proof 2]
+Let $A$ and $B$ be sets.
+\begin{align*}
+A\Delta (A\cap B) &= \{ x : (x\in A-(A\cap B)) \vee (x\in (A\cap B)-A)\}\\
+& = \{ x : ((x\in A) \wedge (x\notin A\cap B)) \vee ((x\in A\cap B)\wedge (x\notin A))\}\\
+& = \{ x : ((x\in A) \wedge (x\notin A\cap B)) \vee (x\in \emptyset)\}\\
+& = \{ x : (x\in A) \wedge (x\notin B) \}\\
+&=A-B.
+\end{align*}
+\end{proof}
+{\color{red} Rubric:
+\begin{itemize}
+\item Proof 1: 1P for proofing both directions, 1P for clearly defining the variables, 2P for breaking down each symmetric difference, 2P for explaining how it connects to the conclusion
+\item Proof 2: 1P for clearly defining the variables, and 1P for each step
+\end{itemize}}
+\end{solution}
+
+\begin{question}{4}
+   Prove for any sets $A$ and $B$, $\emptyset \notin 2^A - 2^B$.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+Let $A$ and $B$ be sets. Then $2^A$ and $2^B$ are power sets of sets $A$ and $B$, respectively. By definition of power sets, $\emptyset \in 2^A$ and $\emptyset \in 2^B$. Note that $2^A - 2^B = \{ X: X\in 2^A, X\notin 2^B\}$. Since $\emptyset \in 2^B$, $\emptyset \notin 2^A-2^B$ .
+
+
+{\color{red} Rubric:
+\begin{itemize}
+\item 1P for clearly defining the variables, 
+\item 1P for explaining an empty set a subset
+\item 1P breaking down definitions
+\item 1P for achieving the conclusion
+\end{itemize}}
+\end{solution}
+
+\begin{question}{4}
+   Prove for any sets $A$ and $B$, $2^{(A-B)} \subseteq ( 2^A - 2^B) \cup \{\emptyset\}$. (\textit{Hint: $\emptyset \notin 2^A - 2^B$.})
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+Let $A$ and $B$ be sets. Let $X\in 2^{(A-B)}$. Then $X\subseteq A-B$, where $X=\emptyset$ or $X\neq \emptyset$. Note that $A-B=\{x : x\in A, x\notin B\}$. If $X\neq \emptyset$, then $X\subseteq A$ and $X\not\subseteq B$. Since $\emptyset \notin 2^A - 2^B$, if $X\neq \emptyset$, then $X\in 2^A-2^B$. Then for any $X\subseteq A-B$, $X\in (2^A-2^B)\cup \{\emptyset\}$. Therefore, $2^{(A-B)} \subseteq ( 2^A - 2^B) \cup \{\emptyset\}$.
+
+
+{\color{red} Rubric:
+\begin{itemize}
+\item 1P for clearly defining the variables, 
+\item 1P for explaining emptyset/nonempty set case
+\item 1P breaking down definitions
+\item 1P for achieving the conclusion
+\end{itemize}}
+\end{solution}
+
+
+\end{document}
+
