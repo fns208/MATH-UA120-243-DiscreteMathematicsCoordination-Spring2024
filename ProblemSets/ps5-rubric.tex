@@ -1,0 +1,345 @@
+\documentclass{article}
+% This is a LaTeX file.  It is a text file that is compiled
+% by a program called LaTeX into a pretty PDF file.  
+% If you're viewing this file on Overleaf, 
+% you'll see that PDF in the window to the right.
+%
+% The LaTeX macro language is complicated, so we have inserted
+% lots of documenting comments into the file.  Comments start
+% with `%' and continue to the end of the line.  In Overleaf's
+% window, they are colored blue.
+%
+% Comments prefixed with `Student:' are relevant to students.
+% Skip anything else you don't understand, or ask me.
+%
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% Student: These lines describe some document metadata.
+\title{Problem Set 5}
+\author{%
+% Student: change the next line to your name!
+    Name
+\\  MATH-UA 120 Discrete Mathematics
+}
+\date{due March 15, 2024}
+
+
+\usepackage[headings=runin-fixed-nr]{exsheets}
+% These make enumerates within questions start at the second ("(a)") level, rather than the first ("1.") level.
+\makeatletter
+    \newcommand{\stepenumdepth}{\advance\@enumdepth\@ne}
+\makeatother
+\SetupExSheets{
+    question/pre-body-hook=\stepenumdepth,
+    solution/pre-body-hook=\stepenumdepth,
+}
+\DeclareInstance{exsheets-heading}{runin-nn-np}{default}{
+    runin = true,
+    title-post-code = .\space,
+    join = {
+        main[r,vc]title[l,vc](0pt,0pt);
+    }
+}
+\newif\ifshowsolutions
+% Student: replace `false' with `true' to typeset your solutions.
+% Otherwise they are ignored!
+\showsolutionstrue
+\ifshowsolutions
+    \SetupExSheets{
+        question/pre-hook=\itshape,
+        solution/headings=runin-nn-np,
+        solution/print=true,
+        solution/name=Answer
+    }%
+    \makeatletter%
+    \pretocmd{\@title}{Answers to }%
+    \makeatother%
+\else
+    \SetupExSheets{solution/print=false}
+\fi
+
+% Bug workaround: http://tex.stackexchange.com/a/146536/1402
+%\newenvironment{exercise}{}{}
+\RenewQuSolPair{question}{solution}
+%\let\answer\solution
+%\let\endanswer\endsolution
+\usepackage{manfnt}
+\newcommand{\danger}{\marginpar[\hfill\dbend]{\dbend\hfill}}
+
+% We are creating a command for some common commands.
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+% This package is for specifying graphics.  It's amazing.
+% Manual at http://texdoc.net/texmf-dist/doc/generic/pgf/pgfmanual.pdf
+\usepackage{tikz}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+\DeclareSIUnit\pound{lb}
+\usepackage{hyperref}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{falseclaim}{False Claim}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+% This is the beginning of the part of the file that describes
+% the text of the document.
+% That's why it says `\begin{document}' below. :-)
+\begin{document}
+\maketitle
+
+
+
+These are to be written up in \LaTeX{} and turned in to Gradescope.\\
+
+
+
+\ifshowsolutions
+    \SetupExSheets{solution/print=true}
+\else
+    \danger
+ \underline{ \LaTeX  Instructions:}  You can view the source (\texttt{.tex}) file \href{}{here} to get some more examples of \LaTeX{} code.  I have commented in the source file in places where new \LaTeX{} constructions are used.
+  
+  Remember to change \verb|\showsolutionsfalse| to \verb|\showsolutionstrue|
+    in the document's preamble 
+    (between \verb|\documentclass{article}| and \verb|\begin{document}|)
+\fi
+
+\section*{Assigned Problems}
+
+\begin{question}{5}
+    Prove the following statement by contrapositive: \\
+    For all $n\in \mathbb{N}$, if $2^n<n!$, then $n>3$.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+We will prove the contrapositive of the statement; that is, for all $n\in \mathbb{N}$, if $n\leq 3$, then $2^n\geq n!$. Since there are only four natural numbers where $n\leq 3$, we only need to prove for the case when $n=0, 1, 2, 3$.
+\begin{itemize}
+\item When $n=0, 1 = 2^0 \geq 0!=1.$
+\item When $n=1, 2 = 2^1 \geq 1!=1.$
+\item When $n=2, 4 = 2^2 \geq 2!=2.$
+\item When $n=3, 8 = 2^3 \geq 3!=6.$
+\end{itemize}
+Since the contrapositive is true, the statement holds.
+
+{\color{red} Rubric:
+\begin{itemize}
+\item 
+\end{itemize}}
+\end{solution}
+
+\begin{question}{5}
+    Prove the following statement by contrapositive: \\
+    For all $a, b\in \mathbb{Z}$, if $a^2(b^2-2b)$ is odd, then $a$ and $b$ are odd.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+We will prove the contrapositive of the statement; that is, for all $a, b\in \mathbb{Z}$, if $a$ or $b$ are even, then $a^2(b^2-2b)$ is even. Consider the following cases:
+\begin{itemize}
+\item[Case 1:] Suppose $a$ is even. Then $a=2x$ for $x\in\Z$. Observe
+\begin{align*}
+a^2(b^2-2b) & = (2x)^2 (b^2-2b)\\
+& = 2(2x^2(b^2-2b)).
+\end{align*}
+Since $2x^2(b^2-2b)\in\Z$, $a^2(b^2-2b)$ is even.
+\item[Case 2:] Suppose $b$ is even. Then $b=2y$ for $y\in\Z$. Observe
+\begin{align*}
+a^2(b^2-2b) & = a^2 ((2y)^2-2(2y))\\
+& = 2(a^2(2y^2-2y)).
+\end{align*}
+Since $a^2(2y^2-2y)\in\Z$, $a^2(b^2-2b)$ is even.
+\end{itemize}
+Since the contrapositive is true, the statement holds.
+
+{\color{red} Rubric:
+\begin{itemize}
+\item 
+\end{itemize}}
+\end{solution}
+
+
+\begin{question}{5}
+    Prove the following by contradiction:\\
+    Let $A, B, C$ be sets. If $A\subseteq B$ and $B\cap C=\emptyset$, then $A\cap C=\emptyset$.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+      Let $A, B, C$ be sets. Assume $A\subseteq B$ and $B\cap C=\emptyset$. Suppose, on the contrary, $A\cap C\neq\emptyset$. Let $x\in A\cap C$. Then $x\in A$ and $x\in C$. Since $A\subseteq B$, $x\in B$. We have $x\in B$ and $x\in C$, which implies $x \in B\cap C$. This contradicts $B\cap C=\emptyset$. Therefore, $A\cap C=\emptyset$.
+	
+{\color{red} Rubric:
+\begin{itemize}
+\item 
+\end{itemize}}
+\end{solution}
+
+\begin{question}{5}
+    Prove the following statement by contradiction:\\
+    Let $x, y\in \Z$. Then $x^2-4y-3\neq 0$.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+Suppose, for the sake of contradiction, that there are some integers $x$ and $y$ such that $x^2 - 4y - 3 = 0$. That is,
+	\[ x^2 = 4y+3 = 2(2y+1)+1, \]
+where $2y+1\in \Z$, which means $x^2$ is odd. Thus, $x$ is odd. Then there exists $a\in \Z$ such that $x^2=2a+1$. Observe 
+\begin{align*}
+x^2 - 4y - 3 & = 0\\
+(2a+1)^2 -4y -3 &= 0\\
+4a^2+4a+1 -4y -3 & = 0\\
+4a^2+4a+1 -4y & = 2\\
+2(2a^2+2a - 2y) & = 2\\
+2a^2+2a - 2y & = 1\\
+2(a^2+a - y) & = 1.
+\end{align*}
+This implies that 1 is equal to an even number, contradiction! Therefore, $x^2-4y-3\neq 0$.
+
+{\color{red} Rubric:
+\begin{itemize}
+\item 
+\end{itemize}}
+\end{solution}
+
+\begin{question}{6}
+    Prove the following by smallest counterexample:\\
+    Let $n\in \mathbb{N}$. If $n\geq 1$, then $4 \mid (5^n-1)$.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+      For the sake of contradiction, suppose that $4 \nmid (5^n-1)$ for $n\geq 1$. By the Well-Ordering Principle, there exists a smallest element $x\in \mathbb{N}$ such that $x\geq 1$ and $4 \nmid (5^x-1)$. We know that $x\neq 1$ because $5^1-1=4$ and $4\mid 4$. So $x\geq 2$. Note $x-1\in \mathbb{N}$ and $x-1\geq 1$. Then $4\mid (5^{x-1}-1)$, meaning there exists $a\in \Z$ such that $5^{x-1}-1 = 4a$. Observe
+      \begin{align*}
+      5^{x-1}-1 &= 4a\\
+      5(5^{x-1}-1) &= 5(4a)\\
+      5^x - 5 &= 20a\\
+      5^x -1 &= 20a +4 = 4(5a+1).
+      \end{align*}
+      Then $4\mid (5^x-1)$, which is a contradiction. Therefore, $4 \mid (5^n-1)$ for $n\geq 1$.
+{\color{red} Rubric:
+\begin{itemize}
+\item 
+\end{itemize}}
+\end{solution}
+
+\begin{question}{4}
+    Find the logic error in the proof. Explain why the proof is not valid; meaning, why is the proof logically wrong (\textit{do not say because the claim is false}).
+    \begin{falseclaim}
+    Let $n\in \mathbb{N}$. $(*) \ 2n=0$.
+    \end{falseclaim}
+    
+    \begin{proof}
+    We prove the claim using proof by contradiction.
+    
+     For the sake of contradiction, assume there exists a natural number such that $(*)$ does not hold. By the Well-Ordering Principle, there exists a smallest $x\in \N$ such that $2x\neq 0$. Note $x\neq 0$. Then there exist  $i, j\in \N$ such that $i, j<x$ and $i+j=x$. Since $i, j <x$, $2i=0$ and $2j=0$. Observe
+      \begin{align*}
+      2x &= 2(i+j)\\
+      & = 2i+2j\\
+      & = 0.
+      \end{align*}
+      Contradiction! Therefore, $(*)$ for $n\in \N$.
+    \end{proof}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+The logic error is in the statement: ``Then there exist  $i, j\in \N$ such that $i, j<x$ and $i+j=x$.''. Although $i, j$ does exist such that $i, j<x$. We cannot claim that $i+j=x$. Since we only eliminated $x$ begin $0$, $x$ could be $1$, then both $i, j=0$ and they cannot sum to any number bigger than 0.
+
+{\color{red} Rubric:
+\begin{itemize}
+\item 
+\end{itemize}}
+\end{solution}
+
+\begin{question}{10}
+    Let $n\in \Z$. Use induction to prove that $\binom{2n}{n} < 2^{2n-2}$ for all $n\geq 5$. 
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+	\begin{description}
+	\item[Base Cases: ] Consider $n=5$. Since $\binom{2(5)}{5}=\binom{10}{5} = \frac{10!}{5!5!} = 252$ and $2^{2(5)-2}= 2^8 = 256$, $\binom{2(5)}{5}<2^{2(5)-2}$.
+	
+	\item[Inductive Hypothesis: ] Consider $n=k$ for some $k\geq 5$.\\ Assume $\binom{2k}{k} < 2^{2k-2}$.
+	
+	\item[Inductive Step: ] Consider $n=k+1$. We want to show $\binom{2(k+1)}{k+1} < 2^{2(k+1)-2}$; meaning we want to show $\binom{2k+2}{k+1} < 2^{2k}$. Observe
+ \begin{align*}
+     \binom{2k+2}{k+1} &= \binom{2k+1}{k} + \binom{2k+1}{k+1} \quad \text{(by Pascal's Identity)}\\
+     &= \binom{2k}{k-1} + \binom{2k}{k}  + \binom{2k}{k} + \binom{2k}{k+1} \quad \text{(by Pascal's Identity)}\\
+     &= \binom{2k}{k+1} + \binom{2k}{k}  + \binom{2k}{k} + \binom{2k}{k+1} \quad \text{(by Proposition 17.7)}\\
+     &= 2\binom{2k}{k+1} + 2\binom{2k}{k}\\
+     & <2\binom{2k}{k} + 2\binom{2k}{k} \quad \left(\text{ since } \binom{2k}{k+1}< \binom{2k}{k}\right)\\ 
+     &= 4\binom{2k}{k}\\
+     & < 2^2 \cdot 2^{2k-2} \quad \text{ by Inductive Hypothesis}\\
+     & = 2^{2k}.
+ \end{align*}
+
+Note that 
+\begin{align*}
+\binom{2k}{k} &= \frac{(2k)!}{k!(2k-k)!} = \frac{(2k)!}{k!k!} = \frac{(2k)_k}{k\cdot (k-1)!}\\
+\binom{2k}{k+1} &= \frac{(2k)!}{(k+1)!(2k-(k+1))!} = \frac{(2k)!}{(k+1)!(k-1)!} = \frac{(2k)_k}{(k+1)\cdot (k-1)!}.
+\end{align*}
+Since $k+1 >k$, 
+\[
+\frac{(2k)_k}{(k+1)\cdot (k-1)!} < \frac{(2k)_k}{k\cdot (k-1)!} \implies \binom{2k}{k+1}< \binom{2k}{k}.
+\]
+	\end{description}
+	Therefore, by the principle of mathematical induction, we have proven for any integer $n\geq 5$, $\binom{2n}{n} < 2^{2n-2}$.
+	
+{\color{red} Rubric:
+\begin{itemize}
+\item Follow RVF rubric with 1P for \LaTeX
+\end{itemize}}
+\end{solution}
+
+\begin{question}{10}
+    Let $n\in \Z$. Use induction to prove that $3 \mid (n^3+2n)$. \textit{Note: We want to prove the claim for all integers, not just natural numbers.}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+        We will consider two cases: $n\geq 0$ and $n<0$.
+    \begin{itemize}
+        \item[Case 1:] Let $n\geq 0$. We will prove $3 \mid (n^3+2n)$ by induction.
+	\begin{description}
+	\item[Base Cases: ] Consider $n=0$. Since $0=3(0)$, $0^3+2(0)=0$ is divisible by 3.
+	
+	\item[Inductive Hypothesis: ] Consider $n=k$ for some $k\geq 0$.\\ Assume $3 \mid (k^3+2k)$.
+	
+	\item[Inductive Step: ] Consider $n=k+1$. We want to show $3\mid [(k+1)^3+2(k+1)]$. Since $3 \mid (k^3+2k)$, there exists $a\in \Z$ such that $k^3+2k=3a$. Observe
+ \begin{align*}
+     (k+1)^3 + 2(k+1) &= k^3+3k^2+3k+1 + 2k +2\\
+     &= (k^3+2k) + (3k^2+3k+3)\\
+     &= 3a + 3k^2+3k+3\\
+     & = 3 (a + k^2+k+1).
+ \end{align*}
+ Since $a + k^2+k+1\in \Z$, $3\mid [(k+1)^3+2(k+1)]$.
+	\end{description}
+	Therefore, by the principle of mathematical induction, the statement is true for $n\geq 0$.
+
+ \item[Case 2:] Let $n<0$. Then $-n>0$. We know $3 \mid [(-n)^3+2(-n)]$. Then there exists $b\in \Z$ such that $-n^3-2n=3b$. So 
+ \[
+ n^3+2n = -(3b) = 3 (-b).
+ \]
+ Since $-b\in\Z$, $3\mid (n^3+2n)$.
+
+ \end{itemize}
+
+ Therefore, we have proven for any integer $n$, $n^3+2n$ is divisible by 3.
+	
+{\color{red} Rubric:
+\begin{itemize}
+\item Follow RVF rubric with 1P for \LaTeX
+\end{itemize}}
+\end{solution}
+
+
+
+
+
+
+
+
+\end{document}

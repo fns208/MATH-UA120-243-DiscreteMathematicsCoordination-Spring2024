@@ -28,7 +28,10 @@
     \node[draw,circle,inner sep=2pt](C) {#1};
   \end{tikzpicture}}
 \renewcommand\choicelabel{\mycirc{\Alph{choice}}}
+\CorrectChoiceEmphasis{\color{red}\bfseries} %%% my students were struggling to see the bold text
 %% ----------------------------------------------
+
+\printanswers
   
 \theoremstyle{definition}
 \newtheorem*{definition}{Definition}
@@ -136,6 +139,10 @@ received unauthorized assistance during this examination.}
 \begin{questions}
 \section*{Multiple Choice: Single Correct Answer} 
 
+\begin{solution}
+Multiple Choice answers are in \textbf{bold font}.
+\end{solution}
+
 \question For each multiple choice question, \textbf{clearly bubble your choice}. There is only one correct choice. No justification is required. No partial credit will be given.
 \begin{parts}
 %%Counterexample
@@ -143,7 +150,7 @@ received unauthorized assistance during this examination.}
 
 \begin{quotation}``If $x$ and $y$ are nonnegative integers with $x \mid y$, then $x \leq y$'' ?\\ \end{quotation}
 \begin{choices}
-\choice $x = 5, y = 0$%Correct
+\CorrectChoice $x = 5, y = 0$%Correct
 \choice $x = 4, y = -4$
 \choice $x = 2, y = 6$ 
 \choice $x = 0, y = 4$
@@ -158,7 +165,7 @@ received unauthorized assistance during this examination.}
 \choice $\emptyset$
 \choice $\{ 1, 2\}$
 \choice $(9, 3)$
-\choice $(4, 5)$%Correct
+\CorrectChoice $(4, 5)$%Correct
 \choice None of the above
 \end{choices}
 
@@ -173,7 +180,7 @@ received unauthorized assistance during this examination.}
 \choice $\forall x \in \R, \ \exists y \in \Q, \ (x - y)^2 \leq 0.1$
 \choice $\exists x \in \R, \ \forall y \in \Q, \ (x - y)^2 \leq 0.1$
 \choice $\forall y \in \Q, \ \exists x \in \R, \ (x - y)^2 < 0.1$
-\choice $\exists x \in \Q, \ \forall y \in \R, \ (x - y)^2 < 0.1$
+\CorrectChoice $\exists x \in \Q, \ \forall y \in \R, \ (x - y)^2 < 0.1$
 \choice None of the above
 \end{choices}
 
@@ -187,7 +194,7 @@ received unauthorized assistance during this examination.}
 
 Which of the following is the \textbf{contrapositive} of the statement above?
 \begin{choices}
-\choice ``$\forall x, y \in \N, x^2< y^2 \implies  x< y$.'' %T
+\CorrectChoice ``$\forall x, y \in \N, x^2< y^2 \implies  x< y$.'' %T
 \choice ``$x^2< y^2 \implies  \exists x, y \in \N, x< y$.'' %F
 \choice ``$\forall x, y \in \N, x^2\geq y^2 \implies  x\geq y$.''%converse
 \choice ``$\exists x, y \in \N, x<y \implies  x^2 < y^2$.'' %F
@@ -200,7 +207,7 @@ Which of the following is the \textbf{contrapositive} of the statement above?
 \begin{choices}
 \choice $0$
 \choice $1$
-\choice $2$ %Correct 
+\CorrectChoice $2$ %Correct 
 \choice $9$
 \choice None of the above
 \end{choices}
@@ -212,7 +219,7 @@ Which one of the following is the set $A\Delta B$?\\
 \begin{choices}
 \choice $\{ 2, 3, 4, 6, 9\}$
 \choice $\{ 6\}$
-\choice $\{ 2, 3, 4, 9\}$ %Correct
+\CorrectChoice $\{ 2, 3, 4, 9\}$ %Correct
 \choice $\{ 2, 4\}$
 \choice None of the above
 \end{choices}
@@ -223,9 +230,9 @@ Which one of the following is the set $A\Delta B$?\\
 
 \begin{choices}
 \choice 4 
-\choice 5
+\CorrectChoice 5
 \choice 7 
-\choice 11 %Correct
+\choice 11 
 \choice None of the above
 \end{choices}
 
@@ -244,10 +251,10 @@ Which one of the following is the set $A\Delta B$?\\
 Assume $x, y\in \R$ and $A, B,$ and $C$ are sets.\\
 
 \begin{choices}
-\choice $\forall x, \ \exists ! y \ , \ y^3=x$ %T
+\CorrectChoice $\forall x, \ \exists ! y \ , \ y^3=x$ %T
 \choice $\forall  x, \ \exists !  y \ , \ xy=0$ %F
-\choice $x\geq 0 \implies (\exists y \ , \ y^2=x)$ %T
-\choice $\exists  x, \ \forall  y \ ,( \ x<y \implies x^2<y^2)$ %T
+\CorrectChoice $x\geq 0 \implies (\exists y \ , \ y^2=x)$ %T
+\CorrectChoice $\exists  x, \ \forall  y \ ,( \ x<y \implies x^2<y^2)$ %T
 \choice $A=B-C \ \implies \ B = A \cup C$ %F
 \choice $A-B=\emptyset \ \implies \ B \neq \emptyset$ %F
 \choice None of the above
@@ -263,10 +270,10 @@ Assume $x, y\in \R$ and $A, B,$ and $C$ are sets.\\
     \end{align*}
 Which of the following statements are \textbf{true}?
 \begin{choices}
-\choice $|A|=3^5$ %T
+\CorrectChoice $|A|=3^5$ %T
 \choice $|C|=2^5$ %F
-\choice $|A\cap C|=1$ %T
-\choice $|A\cap B|=6$ %T
+\CorrectChoice $|A\cap C|=1$ %T
+\CorrectChoice $|A\cap B|=6$ %T
 \choice None of the above
 \end{choices}
 \vfill
@@ -276,11 +283,11 @@ Which of the following statements are \textbf{true}?
 
 \begin{choices}
 \choice $\{\N\}\subseteq \{\emptyset,\{\N\}\}$ %F
-\choice $\{1\}\in\{1, \{1\}\}$ % T
+\CorrectChoice $\{1\}\in\{1, \{1\}\}$ % T
 \choice $2^1=\{\emptyset,\{1\}\}$ %F
 \choice $2^{\{1, \{1,2\}\}}=\{\emptyset, \{1\},\{1, 2\}, \{1, \{1, 2\}\}\}$ %F
 \choice $\emptyset \in \{1, 2\} \cup \emptyset$ %F
-\choice $\{\{1, 2\}, \{\emptyset\}\}$ is a partition of $\{1, 2, \emptyset\}$ %T
+\CorrectChoice $\{\{1, 2\}, \{\emptyset\}\}$ is a partition of $\{1, 2, \emptyset\}$ %T
 \choice None of the above
 \end{choices}
 \vfill
@@ -317,16 +324,16 @@ Let $T$ be a relation on $A=\{1, 2, 3, 4, 5, 6\}$ represented by the following g
 Which of the following statements are \textbf{true}?\\
 
 \begin{choices}
-\choice $S$ is reflexive. %T
+\CorrectChoice $S$ is reflexive. %T
 \choice $S$ is irreflexive. %F
-\choice $S$ is symmetric. %T
+\CorrectChoice $S$ is symmetric. %T
 \choice $S$ is antisymmetric. %F
 \choice $S$ is transitive. %F
 %\choice $T$ is reflexive. %T
 \choice $T$ is irreflexive. %F
 \choice $T$ is symmetric. %F
 %\choice $T$ is antisymmetric. %T
-\choice $T$ is transitive. %T
+\CorrectChoice $T$ is transitive. %T
 \choice None of the above
 \end{choices}
 %
@@ -346,28 +353,52 @@ Which of the following statements are \textbf{true}?\\
 \question[4] 
 The operation $\uparrow$ is called the \textbf{Sheffer stroke} where $p \uparrow q \iff \neg(p\wedge q)$. 
 Prove that $(p\uparrow p)\uparrow (q\uparrow q)$ is logically equivalent to $p\vee q$. 
+\begin{solution}
+ \begin{align*}
+ (p\uparrow p)\uparrow (q\uparrow q) & = \neg[(\neg(p\wedge p))\wedge(\neg(q\wedge q))]\\
+ & = (p\wedge p) \vee (q\wedge q)\\
+ &= p\vee q.
+ \end{align*}
+\end{solution}
 
- 
 \newpage
 %Counting
 \question 4 different varieties of plant seeds are to be planted in a row. There are 15 varieties of vegetables and 10 varieties of flowers available. In each of the following cases, determine the number of possible arrangements of all the varieties of plant seeds under the given conditions.  For each part, you must give a brief justification in words (\textit{and optional diagrams}), and there is no need to give a numerical computation.
 \begin{parts}
 %%%
 \part[3] Unrestricted.
+\begin{solution}
+ Since we are planting in a row and using different varieties, order matters and there is no repetition. Since we need 4 varieties to plant from  a choice of 25 varieties, there is a total of $(25)_4$ possible ways.
+\end{solution}
 \vfill
 %%%
 \part[3] Both the first and last positions are occupied by flowers.
+\begin{solution}
+ As mentioned in part a, we know this is represented by a list with no repetition. Since the first and fourth position needs to be flowers, there are 10 choices for the first position and 9 choices for the fourth position. Since there are no restrictions for the second and third position and we used up two of the available choices already, there are 23 and 22 choices for the second and third position, respectively. Then there is a total of $10\cdot 23\cdot22\cdot 9$ possible ways.
+\end{solution}
 \vfill
-\vfill
+
 \part[3] All the vegetables are at one end of the row.
+\begin{solution}
+ In order for all vegetables to be grouped together at one end of the row, there can be either 0 vegetable, 1 vegetable, 2 vegetables, 3 vegetables, and 4 vegetables. Note that for the cases of 1 vegetable, 2 vegetables, and 3 vegetables, there are two ends of the row, so we would need to multiply by 2. So the total number of possible ways is sum of the cases of 0 vegetable, 4 vegetables, and twice the amount of having at one end of the row for the cases of 1 vegetable, 2 vegetables, and 3 vegetables:
+ \[
+1\cdot (10)_4 + (15)_4\cdot 1 + 2[ 15\cdot (10)_3 + (15)_2\cdot(10)_2 + (15)_3\cdot 10].
+ \]
+ 
+ Note that we still need to account for the order of the flower varieties.
+\end{solution}
 \vfill
-\vfill
-\vfill
+
 %%%
 \part[3] There must be more flowers than vegetables and order does not matter.
+\begin{solution}
+ Since we don't care about order, this is similar to counting sets. Then we have two cases: when we have 3 flowers and 1 vegetable, and 4 flowers and 0 vegetable. Then the total number of ways is 
+ \[
+ \binom{10}{3}\binom{15}{1} + \binom{10}{4}\cdot \binom{15}{0}
+ \]
+\end{solution}
 \vfill
-\vfill
-\vfill
+
 
 
 \end{parts}
@@ -387,15 +418,25 @@ Here $\max$ is a function that returns the larger of two numbers. For example,
 
 \begin{parts}
 \part[4] Prove that $\mathrel{R}$ is transitive on the set $\R\times \R$ using the definition of transitive. 
-\vfill
-\vfill
+\begin{solution}
+Let $(a, b), (c, d), (e, f)\in \mathbb{R}\times\mathbb{R}$ such that $(a, b) \mathrel{R} (c, d)$ and $(c, d)  \mathrel{R} (e, f)$. Then $\max(a, b)=\max(c, d)$ and $\max(c, d) = \max(e, f)$. Since the $\max$ function outputs a real number, $\max(a, b)  = \max(e, f)$, which implies $(a, b)  \mathrel{R} (e, f)$. Therefore $ \mathrel{R}$ is transitive.
+\end{solution}
 \vfill
 
 \part[2] If $X=(3, 2)$, list four elements of $[X]$ (the equivalence class of $X$) and describe the equivalence class.
-\vfill
+\begin{solution}
+ \begin{align*}
+ [(3, 2)] & = \{ (3, 2), (0, 3), (3, -3), (2, 3), \dots \}\\
+ &= \{(a, b) : (a=3, b<a) \vee (b=3, a<b)\}\\
+ &= \text{ set of ordered pair of real numbers such that the largest of the two values is 3.}
+ \end{align*}
+\end{solution}
 \vfill
 
 \part[2] How many distinct equivalence classes are there for the relation $\mathrel{R}$ on the set $\R\times \R$? Briefly explain your reasoning.
+\begin{solution}
+ There are infinitely many equivalence classes since there are infinitely many real numbers that could be the maximum value in any order pair.
+\end{solution}
 \vfill
 
 \end{parts}
@@ -411,8 +452,25 @@ Let $n$ and $k$ be natural numbers with $0\leq k<n$, then
 \[
 \binom{n}{k+1} = \binom{k}{k} + \binom{k+1}{k} + \binom{k+2}{k} + \cdots + \binom{n-1}{k}.
 \]
-%\newpage
-%\input{FR-Bonus}
+
+\begin{solution}
+ Let $A = \{1, 2, 3, \dots, n\}$ for $n\in \mathbb{N}$. 
+ 
+ \underline{Question:} How many possible subsets of $A$ with cardinality $k+1$ are there?
+ 
+ \begin{itemize}
+ \item[Answer 1:] Since we want all possible subsets of $A$ with cardinality $k+1$ and $|A|=n$, there are $\binom{n}{k+1}$ number of possible subsets.
+ 
+ \item[Answer 2:] Let's look at all possible subsets of $A$ with cardinality $k+1$ where $i$ is the largest element. Since there are $k+1$ elements in each subset, we must have $k+1\leq i\leq n$. The remaining $k$ elements in the subset must all be less than or equal to $i-1$.  So there are $\binom{i-1}{k}$ possible choices.  The value of $i$ partitions the subsets into pairwise disjoint parts. So the total number of subsets is obtained by summing over all values of $i$. Then the total number of possible subsets is
+ \[
+ \displaystyle\sum_{i=k+1}^n \binom{i-1}{k} =  \binom{k}{k} + \binom{k+1}{k} + \binom{k+2}{k} + \cdots + \binom{n-1}{k}.
+ \]
+ 
+ Since Answer 1 and Answer 2 both answers the question, Answer 1 and Answer 2 are equal.
+ \end{itemize}
+\end{solution}
+
+
 \end{questions}
 
 %%%%%%%%%%%%%%%END-OF-FREE-RESPONSE%%%%%%%%%%%%%%%%%
