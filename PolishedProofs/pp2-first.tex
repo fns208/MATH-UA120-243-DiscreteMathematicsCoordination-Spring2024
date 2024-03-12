@@ -1,0 +1,121 @@
+\documentclass{article}
+%% This is some font management depending on the TeX “engine” being used.
+%% Nothing to worry about.
+\usepackage{ifxetex}
+\ifxetex
+\usepackage{fontspec}
+\else
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\fi
+
+%% Student: These lines describe some document metadata.
+
+\title{Polished Proof 2: First Draft}
+
+\usepackage{etoolbox}
+\author{%
+	Name
+	\\
+	MATH-UA 120 Discrete Mathematics
+}
+\date{Due: Friday, March 29 on Gradescope.}
+
+
+%% These lines set up the question, answer, and solution environments.
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\theoremstyle{definition}
+\newtheorem{question}{Question}
+
+\newenvironment{answer}[1][Answer]
+{\begin{proof}[#1]\renewcommand\qedsymbol{$\vartriangle$}}
+	{\end{proof}}
+\newenvironment{solution}[1][Solution]
+{\begin{proof}[#1]\renewcommand\qedsymbol{$\blacktriangle$}}
+	{\end{proof}}
+\makeatletter
+\newcommand{\stepenumdepth}{\advance\@enumdepth\@ne}
+\makeatother
+\AtBeginEnvironment{question}{\stepenumdepth}
+\AtBeginEnvironment{answer}{\stepenumdepth}
+\AtBeginEnvironment{solution}{\stepenumdepth}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\tikzstyle{vertex}=[circle,draw,fill=none,inner sep=0pt,outer sep=0pt, minimum width=1ex]
+\tikzstyle{edge}=[draw,thick]
+\usepackage{array}
+
+\usepackage{enumerate}
+
+\usepackage{hyperref}
+%% This is the beginning of the part of the file that describes
+%% the actual text of the document.
+%% That's why it says `\begin{document}' below. :-)
+\begin{document}
+	\maketitle
+	
+	\section*{Directions}
+
+    You can view the source (\texttt{.tex}) file \href{}{here} in \LaTeX.
+    
+    In the source file on Overleaf, remove all instructions after \texttt{$\backslash$maketitle} and complete the assignment in \LaTeX, 
+    download the pdf and upload to Gradescope. There are two parts to the assignment: Proof and Reflection.
+
+
+\section*{Proof Options}
+
+Please choose \textbf{one} of the following exercises. Begin with ``Claim:" and write the statement you intend to prove. Then write ``Proof:" and the proof. \textbf{Your induction parts (base case(s), induction hypothesis and induction step) should be clearly labeled.} You can choose your own end-of-proof marker for flair.
+
+\begin{enumerate}
+	\item 
+    Suppose you have a pile of $n\geq 2$ rocks and split the pile into $n$ piles of one rock each by successively splitting a pile of rocks into two smaller piles. Each time you split a pile, find the product of the number of rocks from the two new piles (e.g., if you form two smaller piles of $r$ and $s$ rocks, the product you form is $rs$.) Prove that by induction on $n$ that no matter how the rocks are split, the sum of all of these products equals $\frac{n(n-1)}{2}$.
+
+	\item
+    Let $A_0 = \left\{\frac{1}{2},1\right\}$, and for each integer $n \in \mathbb{N}$, let 
+    \[
+        A_{n+1} = \left\{ab : a,b \in A_n\right\}
+                    \cup \left\{\frac{a+b}{2} : a,b\in A_n \right\}
+    \]
+    Finally, let 
+    \[
+        A = \bigcup_{n=0}^\infty A_n
+    \]
+    Prove by induction on $n$ that if $a\in A$, then $0\leq a\leq 1$.
+
+\end{enumerate}
+
+
+\section*{Reflection Prompt}
+    Please provide at least a paragraph explaining your process to completing the proof you have chosen above. You may use the following prompts to guide your response and any additional information needed to support your reflection. Responses consisting of one sentence or less for each of the following prompts will not be acceptable.
+    \begin{itemize}
+        \item Describe in detail your brainstorming process for the proof.
+        \item What skills/lessons did you apply from either class or polished proof 1?
+        \item Why did you choose this problem versus the other one?
+        \item What did you like about this problem and/or the proof?
+        \item What did you not like about this problem and/or the proof?
+    \end{itemize}
+
+\section*{Grading Rubric}
+    This assignment will be graded on a scale of 1-15 points.
+    \begin{itemize}
+    \item The proof will be graded out of 12 points via the RVF rubric (9 points) and the remaining 3 points will be given for the proper use of \LaTeX.
+    \item The reflection will be graded out of 3 points. It must be thoughtful and concise, addressing all the prompts provided and any additional information needed to support the reflection.
+    \end{itemize}
+     
+    More information on the RVF rubric can be found 
+    \href{https://drive.google.com/file/d/1P0OBjw-GkX64uCpYcqYmXARapf9MwaiI/view?usp=sharing}{here}. 
+    \href{https://drive.google.com/file/d/14zLx8TDPdD8shbwgMGPAAWdQrUZDz1jd/view?usp=share_link}{Here} 
+    are some examples of past Polished Proof graded work to make sure expectations are clear. \href{https://docs.google.com/document/d/1GcCZI_ueOWXlBC9xIBietOw1uEzFIyg-TzuHvbCZumU/edit?usp=sharing}{Here} are some examples of Reflection expectations.
+
+
+	
+
+\end{document}
+
