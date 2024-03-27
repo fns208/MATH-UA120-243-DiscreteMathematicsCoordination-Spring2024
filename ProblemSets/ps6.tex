@@ -1,0 +1,206 @@
+\documentclass{article}
+% The LaTeX macro language is complicated, so we have inserted
+% lots of documenting comments into the file.  Comments start
+% with `%' and continue to the end of the line.  In Overleaf's
+% window, they are colored green
+%
+% Comments prefixed with `Student:' are relevant to students.
+% Skip anything else you don't understand, or ask me.
+%
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% Student: These lines describe some document metadata.
+\title{Problem Set 6}
+\author{%
+% Student: change the next line to your name!
+    Name
+\\  MATH-UA 120 Discrete Mathematics
+}
+\date{due April 4, 2024}
+
+
+\usepackage[headings=runin-fixed-nr]{exsheets}
+% These make enumerates within questions start at the second ("(a)") level, rather than the first ("1.") level.
+\makeatletter
+    \newcommand{\stepenumdepth}{\advance\@enumdepth\@ne}
+\makeatother
+\SetupExSheets{
+    question/pre-body-hook=\stepenumdepth,
+    solution/pre-body-hook=\stepenumdepth,
+}
+\DeclareInstance{exsheets-heading}{runin-nn-np}{default}{
+    runin = true,
+    title-post-code = .\space,
+    join = {
+        main[r,vc]title[l,vc](0pt,0pt);
+    }
+}
+\newif\ifshowsolutions
+% Student: replace `false' with `true' to typeset your solutions.
+% Otherwise they are ignored!
+\showsolutionsfalse
+\ifshowsolutions
+    \SetupExSheets{
+        question/pre-hook=\itshape,
+        solution/headings=runin-nn-np,
+        solution/print=true,
+        solution/name=Answer
+    }%
+    \makeatletter%
+    \pretocmd{\@title}{Answers to }%
+    \makeatother%
+\else
+    \SetupExSheets{solution/print=false}
+\fi
+
+% Bug workaround: http://tex.stackexchange.com/a/146536/1402
+%\newenvironment{exercise}{}{}
+\RenewQuSolPair{question}{solution}
+%\let\answer\solution
+%\let\endanswer\endsolution
+\usepackage{manfnt}
+\newcommand{\danger}{\marginpar[\hfill\dbend]{\dbend\hfill}}
+
+% We are creating a command for some common commands.
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\id}{\operatorname{id}}
+
+% This package is for specifying graphics.  It's amazing.
+% Manual at http://texdoc.net/texmf-dist/doc/generic/pgf/pgfmanual.pdf
+\usepackage{tikz}
+
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\DeclareSIUnit\pound{lb}
+\usepackage{hyperref}
+\newtheorem*{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+% This is the beginning of the part of the file that describes
+% the text of the document.
+% That's why it says `\begin{document}' below. :-)
+\begin{document}
+\maketitle
+
+
+
+These are to be written up in \LaTeX{} and turned in to Gradescope.
+
+
+
+\ifshowsolutions
+    \SetupExSheets{solution/print=true}
+\else
+    \danger
+ \underline{ \LaTeX{}  Instructions:}  You can view the source (\texttt{.tex}) file to get some more examples of \LaTeX{} code.  I have commented the source file in places where new \LaTeX{} constructions are used.
+  
+  Remember to change \verb|\showsolutionsfalse| to \verb|\showsolutionstrue|
+    in the document's preamble 
+    (between \verb|\documentclass{article}| and \verb|\begin{document}|)
+\fi
+
+\section*{Assigned Problems}
+
+
+\begin{question}{9}
+    Suppose that we have two piles of cards each containing \(n\) cards. Two players play a game as follows. Each player, in turn, chooses one pile and then removes any number of cards, but at least one, from the chosen pile. The player who removes the last card wins the game. Show that the second player can always win the game. \textit{Hint:} Use strong induction.
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+
+
+\begin{question}{10}
+    For each of the following functions, say if it is one-to-one and / or onto? Prove or disprove each statement.
+    \begin{enumerate}
+	\item \(f \colon  \Z \to \Z\) with \(f(n) = n^2 + 1\) for \(n \in \Z\).
+	\item \(f \colon  \Z \to \Z\) with \(f(n) = n/2\) if \(n\) is even, and \(f(n) = 0\) if \(n\) is odd.
+	\item \(f \colon  \R \to \R\) with \(f(x) = 1/x\) if \(x \neq 0\), and \(f(0) = 0\).
+	\item \(f\colon \N \to \N\) with \(f(n) = 2^n\) if \(n\) is even and \(f(n) = n\) if \(n\) is odd.
+	\item \(f \colon  2^{\Z} \to 2^{\Z}\) with \(f(A) = A \cup \{ 0 \}\) for \(A \in 2^{\Z}\).
+    \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+
+
+
+
+\begin{question}{5}
+    \begin{enumerate}
+        \item Let \(A = \{1,2,3,4\}\) and \(B = \{5,6,7\}\).
+        Let \(f\) be the relation \( \left\{(1,5),(2,5),(3,6),(x, y)\right\} \) where the values of $(x, y)$ are to be filled in by you. 
+        Give an example of \((x, y) \in A \times B\) so that: (Remember to explain your reasoning.)
+            \begin{enumerate}
+                \item The relation \(f\) is not a function.
+                \item The relation is a function from \(A\) to \(B\) but not onto \(B\).
+                \item The relation is a function from \(A\) to \(B\) and is onto \(B\).
+            \end{enumerate}
+
+        \item     Let \(A\) be an \(n\)-element set and let \(i, j, k \in \mathbb{N}\) with \(i+j+k = n\).
+        How many functions \(f \colon A \to \{0,1,2\}\) are there for which all three of the below are satisfied:
+            \begin{itemize}
+                \item \(\left|\left\{ a \in A : f(a) = 0 \right\} \right| = i\),
+                \item \(\left|\left\{ a \in A : f(a) = 1 \right\} \right| = j\),
+                \item \(\left|\left\{ a \in A : f(a) = 2 \right\} \right| = k\)?
+            \end{itemize}
+            Your answer should be in terms of \(n\), \(i\), \(j\), and \(k\).
+    \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+
+\begin{question}{10}
+    \begin{enumerate}
+	\item You have 20 jellybeans and you want to eat all the jellybeans over the course of 2 weeks. Suppose that you eat at least one jellybean a day. Prove using the pigeonhole principle that there is a set of consecutive days where you ate exactly 7 jellybeans. 
+	\item Let \(A\) be a set of 10 distinct integers between 1 and 100 (both inclusive). 
+ \begin{enumerate}
+     \item Use the pigeonhole principle to prove that there are two different nonempty subsets of \(A\) such that the sum of all their elements are the same.
+     \item Prove that there are two nonempty \emph{disjoint} subsets of \(A\) such that the sum of all their elements are the same.
+ \end{enumerate}
+	
+    \end{enumerate}
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+
+
+\begin{question}{10}
+    Let \(A = \{ x \in \Z : 3\mid x \}\).  Show that \(A\) and \(\mathbb{N}\) have the same cardinality.  \textit{Hint:} Define \(f\colon A \rightarrow \N\) such that
+    \[
+        f(x) = \begin{cases*}
+                    \frac{2}{3}x & if \(x \geq 0\)\\
+                    -\frac{2}{3}x-1 & if \( x < 0 \)
+               \end{cases*}
+    \]
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+
+\begin{question}{6}
+Let \(f\colon A\to B\) be a function.
+For any subset \(X\) of \(A\), we define \[ f(X) = \{ f(x) : x \in X \}.\]
+
+Let \(X\) and \(Y\) be subsets of \(A\). Prove \(f(X\cup Y) = f(X) \cup f(Y)\).
+\end{question}
+% Student: put your answer between the next two lines.
+\begin{solution}
+\end{solution}
+\end{document}

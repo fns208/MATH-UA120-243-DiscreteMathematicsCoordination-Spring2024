@@ -1,0 +1,430 @@
+\documentclass[10pt, addpoints]{exam}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, graphicx, hyperref}
+\usepackage{enumerate}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{multirow, multicol}
+\usepackage{pdfpages}
+\usepackage{pgfplots}
+\usepackage{wrapfig}
+\usepackage{stfloats}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{wasysym}
+\firstpageheader{}{}{}
+\firstpagefooter{}{}{}
+\runningheader{\scalebox{0.25}{\includegraphics{nyu_short_black}}}{}{\tiny Math-UA.120}
+\runningfooter{}{\thepage}{}
+
+\newtheorem*{theorem}{Theorem}
+
+
+\printanswers
+
+
+%% MC Solution Sheet ----------------------------
+\newcommand*\mycirc[1]{%
+  \begin{tikzpicture}[baseline=(C.base)]
+    \node[draw,circle,inner sep=2pt](C) {#1};
+  \end{tikzpicture}}
+\renewcommand\choicelabel{\mycirc{\Alph{choice}}}
+%% ----------------------------------------------
+  
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\proj}{\textbf{proj}}
+\newcommand{\curl}{\textrm{curl }}
+\renewcommand{\div}{\textrm{ div }}
+% For boldface vectors:
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand\arraystretch{2}
+ 
+\newcommand*\ansbox[2]{\fbox{\begin{minipage}{#1}
+     \hspace{#1}
+     \vspace{#2}
+     \end{minipage}}} 
+%%%Preamble for Header
+\pagestyle{headandfoot}
+\firstpageheadrule
+\runningheadrule
+\firstpageheader{\includegraphics[height=.5cm]{nyu_short_black}}{Exam 2, Page \thepage\ of \numpages}{\tiny MATH-UA.120 }
+\runningheader{\includegraphics[height=.5cm]{nyu_short_black}}
+              {Exam 2, Page \thepage\ of \numpages}
+              {\tiny MATH-UA.120 }
+\firstpagefooter{}{}{}
+\runningfooter{}{}{}
+%\newcommand*\mycirc[1]{%
+%  \begin{tikzpicture}[baseline=(C.base)]
+%    \node[draw,circle,inner sep=1pt](C) {#1};
+%  \end{tikzpicture}}
+\renewcommand\arraystretch{2}
+ 
+
+
+\pgfplotsset{compat=1.16}
+
+\begin{document}
+
+\addpoints
+
+\extrawidth{.25in}
+%\pagestyle{plain}
+\usehorizontalhalf
+\setlength\topmargin{-.75in}
+
+
+%%%%%%%%%%%%%%%BEGINNING-OF-TITLEPAGE%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\noindent{\large\textbf{Math-UA.120}  \hfill \includegraphics[height=.5cm]{nyu_short_black}}\\
+\noindent{
+\textbf{Sample Exam 2} 
+}
+
+
+\noindent \begin{center}\begin{tabular}{|cccc|}\hline
+\large Name: & \hspace{4in} 
+&
+\large NetID: & \hspace{1in} \\
+&&&\\
+%NetID:& \\
+ \hline
+ \end{tabular}\end{center}
+\vspace{.3in}
+\noindent\textbf{Please read and follow directions carefully}: 
+
+\begin{itemize}
+	\setlength\itemsep{0em}
+	\item Please \textbf{clearly print} your full name and NetID (not your N number).
+	\item This exam is scheduled for 100 minutes.
+\item This exam is printed double-sided.
+\item A blank page has been attached to the exam; it may be used as scratch paper.
+\item Do \textbf{NOT} detach any page from the exam, except scratch paper.
+\item During this exam, you may only use the scratch paper provided and writing utensils. \textbf{No calculators}, cell phones, books, notes or other resources will be permitted.
+	\item There are $\numquestions$ total questions on this exam for a total of $\numpoints$ points.
+	\item There are 3 types of questions: single-choice, multiple-choice, and free-response. 
+	\begin{itemize}
+	\item \textbf{Single and Multiple-choice} requires no justification. 
+	\item \textbf{Free-response} questions should have solutions that are fully justified in the space provided.
+	You must present a full solution in a clear, logical manner that conveys your full understanding of the concept being tested. Correct answer without justification \underline{receives no credit.}
+	\item We reserve the right to take off points if we cannot see how you arrived at your answer (even if your final answer is correct).
+	\end{itemize}
+
+%\item Clearly circle/box your final answers, with the exception of proofs.
+
+%\item Be sure to erase or cross out any work that you do not want graded.
+
+
+\end{itemize}
+
+\vspace{0.3in}
+
+
+\vfill
+\begin{center}
+\emph{By sitting for this exam, I pledge that I have observed the NYU honor code, and that I have neither given nor
+received unauthorized assistance during this examination.}
+\end{center}
+
+
+\begin{center}
+ {\large \bf GOOD LUCK :)}
+\end{center}
+
+\end{titlepage}
+
+\pointsinrightmargin
+%%%%%%%%%%%%%%%%END-COVERSHEET%%%%%%%%%%%%%%%%%
+\renewcommand\arraystretch{1}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%MultipleChoice%%%%%%%%%%%%%%%%
+\begin{questions}
+\section*{Multiple Choice: Single Correct Answer} 
+
+\question For each multiple choice question, \textbf{clearly bubble your choice}. There is only one correct choice. No justification is required. No partial credit will be given.
+\begin{parts}
+\part[2] Suppose $f: \Z \to \Z$ is given by the formula $f(x) = 2x$.
+
+Which one of the following is the domain of $f^{-1}$ ? 
+\begin{choices}
+\choice $\{ \frac{x}{2} ~:~ x\in \Z\}$\\
+\CorrectChoice $\{ 2x ~:~ x\in \Z\}$\\ %T
+\choice $\Z$\\
+\choice $\N$\\
+\choice None of the above
+\end{choices}
+
+\vfill
+Suppose that $A = \{ S \subseteq \{1, 2, \ldots, m \} ~:~ |S| = 2 \}$ and 
+$B = \{1, 2, 3, \ldots, n \}$, where $m$ and $n$ are positive integers. Consider an arbitrary function $f: A \to B$. 
+
+Which one of the following statements is \textbf{true}?
+
+\begin{choices}
+\choice If $m < n$, then $f$ one-to-one.\\
+\choice If $f$ is one-to-one, then $m \leq n$.\\
+\CorrectChoice If ${m \choose 2} > n$, then $f$ not one-to-one.\\%T
+\choice If $f$ is not one-to-one, then ${m \choose 2} \geq n$.\\
+\choice None of the above
+\end{choices}
+
+\vfill
+\newpage
+\part[2] If a Martian has an infinite number of blue, yellow, and black socks in a drawer, how many socks does the Martian need to pull out from the drawer to guarantee he has a pair of the same color?
+
+\begin{choices}
+\choice $2$\\
+\choice $3$ \\
+\choice $4$\\
+\CorrectChoice $5$\\%T
+\choice None of the above
+\end{choices}
+
+\vfill
+\part[2] Let $A=\{1, 2, 3\}$ and $B=\{3, 4, 5, 6\}$ be sets. How many functions are there from $A$ to $B$?
+
+\begin{choices}
+\choice ${4\choose3}$ \\
+\choice $3$\\
+\choice $(4)_3$ \\
+\CorrectChoice $4^3$ \\ %T
+\choice None of the above
+\end{choices}
+
+\vfill
+\part[2] Here is a flawed proof that all natural numbers are equal to $0$:
+    \begin{enumerate}
+        \item Let $A = \{0\}$.  We claim $A = \mathbb{N}$.
+        \item Clearly $0\in A$.
+        \item Suppose $0,1,\dots,k \in A$ for some $k\in\mathbb{N}$.  Then $1 \in A$ and $k\in A$.
+        \item So $k+1 = 0 + 0 =0$, which means $k+1\in A$.
+        \item Therefore by strong induction, $A = \mathbb{N}$.
+    \end{enumerate}
+ In which line is the error?
+\begin{choices}
+\CorrectChoice {line 3}\\%correct
+\choice {line 4}\\
+\choice {line 2}\\
+\choice{line 5}\\
+\choice{line 1}
+    \end{choices}
+
+\vfill
+
+\end{parts}
+\newpage
+
+\section*{Multiple Choice: Multiple Correct Answers} 
+
+\question For each multiple choice question, \textbf{clearly bubble your choice(s)}. There may be more than one correct choice; \textbf{fill in all that apply}. If none of the choices apply, fill in "None of the above". No justification is required. Partial credit will be given.
+
+\begin{parts}
+%%Cardinality
+\part[4] Which of the following sets have the same cardinality as the set of natural numbers?
+
+\begin{choices}
+\CorrectChoice The set of rational numbers that are between 0 and 1.\\
+\CorrectChoice The set of all even integers.\\
+\choice The power set of the set $S = \{1, 2, 3, 4\}$\\
+\CorrectChoice The set of all integers that are divisible by 5.\\
+ \choice None of the above
+\end{choices}
+%\input{MC-Multi-PHP-sock}
+%%
+\vfill
+%%
+%\newpage
+\part[4] Which of the functions below are one-to-one ?
+
+\begin{choices}
+\CorrectChoice $f: \Q \to \Q$ given by $f(x) = 7 - 2x$\\
+\CorrectChoice $g: \Z \to \Z$ given by $g(x) = 7 - 2x$\\
+\CorrectChoice $h: \N \to \Z$ given by $h(x) = |x|$\\
+\choice $k: \Z \to \Z$ given by $k(x) = x^2 + 5$\\%F
+\choice None of the above
+\end{choices}
+\vfill
+
+%\newpage
+\part[4] Which of the functions below are onto? 
+
+\begin{choices}
+\CorrectChoice $f: \Q \to \Q$ given by $f(x) = 7 - 2x$\\%onto
+\choice $g: \Z \to \Z$ given by $g(x) = 7 - 2x$\\
+\choice $h: \N \to \Z$ given by $h(x) = |x|$\\
+\choice $k: \Z \to \Z$ given by $k(x) = x^2 + 5$\\
+\choice None of the above
+\end{choices}
+\vfill
+
+%%\newpage
+%\input{MC-Multi-Sets}
+%\vfill
+%%\input{MC-SubGraph}
+%\vfill
+
+
+%\vfill
+\end{parts}
+
+%%%%%%%%%%%FREE RESPONSE%%%%%%%%%%%%
+
+\newpage
+\section*{Free Response/Proofs}
+\noindent
+\textbf{Show all work and justification.} Correct answer without justification receives no credit.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question
+\begin{parts}
+\part[5] Suppose we sample $W$ words at random from an english language dictionary. What is the smallest integer $W$ such that at least five of the sampled words start and end with the same letters? Use the pigeonhole principle to support your answer.
+\begin{solution}
+Since there are 26 letters in the alphabet, there are $26^2$ possible pairs of first and last letters. According to the generalized pigeonhole principle, we need to assume that for every pair of first and last letters we have 4 copies and then add one more word to ensure it will be the fifth copy of one of the pairs of first and last letters. That is, we need $4(26^2)+1$ words to guarantee that at least five of the sampled words start and end with the same letters.
+\end{solution}
+\vfill
+
+\part[5] Use the pigeonhole principle to find the smallest number of ways to choose three different numbers from 1 to 10 (inclusive) so that all choices have the same sum.
+\begin{solution}
+Choosing from $\{1, 2, \dots, 10\}$, there are $\binom{10}{3}=120$ ways to choose three different numbers, which are the pigeons. The smallest possible sum from any three numbers is $1+2+3 = 6$ and the largest sum from any three numbers is $8+9+10=27$. Then we have a sum that can range from 6 to 27; that is we have 22 different possible sums, which are the pigeonholes. Since $120 > 5(22) = 110$, by the generalized  pigeonhole principle, there are at least 6 sets of three numbers choosing from $\{1, 2, \dots, 10\}$ that have the same sum.
+\end{solution}
+\vfill
+
+\end{parts}
+
+\newpage
+% Easy induction
+\question[8] Prove the following statement using \textbf{smallest counterexample}.
+\begin{quotation}
+For each $n \in \N, \ n \geq 1$:
+\[ 5 + 8 + 11 + 14 + \ldots + (3n+2) = \frac{n(3n+7)}{2}. \]
+
+\end{quotation}
+
+\begin{solution}
+For the sake of contradiction, assume the statement is not true.
+
+Let $X=\{n\in \N : n\geq 1, 5 + 8 + 11 + 14 + \ldots + (3n+2) \neq \frac{n(3n+7)}{2}\}.$ Then $X\neq \emptyset$. By the Well-Ordering Principle, there exists $x\in X$ that is the least element. Note $x\neq 1$ because $3(1)+2 = 5$ and $\frac{1(3(1)+7)}{2} = 5$. Then $x>1$. Consider $x-1$. Since $1\leq x-1 <x$, 
+\[ 5 + 8 + 11 + 14 + \ldots + (3(x-1)+2) = \frac{(x-1)(3(x-1)+7)}{2}. 
+\]
+Observe that 
+\begin{align*}
+ 5 + 8 + 11 + 14 + \ldots + (3(x-1)+2)  + (3x+2) & = \frac{(x-1)(3(x-1)+7)}{2} + (3x+2)\\
+ & = \frac{(x-1)(3x+4)}{2} + 3x+2 \\
+ & = \frac{3x^2+x-4+6x+4}{2}\\ 
+ &= \frac{3x^2+7x}{2}\\
+ &= \frac{x(3x+7)}{2}.
+\end{align*}
+Contradiction! Therefore the statement is true.
+\end{solution}
+
+
+\newpage
+\question Given $f:A\to B$, let $g:2^B\to 2^A$ be defined as follows: for any $X\in 2^B$, 
+\[ g(X)=\{a\in A: f(a)\in X\}.\]
+\begin{parts}
+\part[4] Suppose, for example, $A=\{1, 2, 3, 4\}$, $B=\{5, 6, 7\}$, and $f=\{(1, 5), (2, 7), (3, 5), (4, 6)\}$. 
+Find $g(\{5\})$ and $g(\{6, 7\})$. 
+\begin{solution}
+$g(\{5\}) = \{1, 3\}, g(\{6, 7\}) = \{2, 4\}$
+\end{solution}
+\vfill
+
+\part[10] Prove and/or disprove: If $g$ is onto, then $f$ is one-to-one and onto.
+\begin{solution}
+\begin{itemize}
+\item[onto:] We will disprove $f$ is onto by counterexample. Suppose $A=\{1\}, B=\{2, 3\},$
+
+$ 2^A=\{\emptyset, \{1\}\}, 2^B = \{\emptyset, \{2\}, \{3\}, \{2, 3\}\},$ and $g= \{(\emptyset, \emptyset), (\{2\}, \{1\}), (\{3\}, \emptyset), (\{2, 3\}, \{1\})\}$. Then $g$ is onto. Note that $f=\{(1, 2)\}$ which is not onto. Therefore the statement `` If $g$ is onto, then $f$ is onto.'' is false.
+
+\item[1-1:] Assume $g$ is onto. For the sake of contradiction, assume $f$ is not one-to-one. Let $a_1, a_2\in A, b\in B$ such that $f(a_1)=f(a_2)=b$ and $a_1\neq a_2$. Then $g(\{b\})=\{a_1, a_2\}$. Since $g$ is onto, there exist $b_1, b_2\in B$ such that $g(\{b_1\})=\{a_1\}$ and $g(\{b_2\})=\{a_2\}$. Then $f(a_1)=b_1$ and $f(a_2)=b_2$. Since $f$ is a function, $b_1=b=b_2$, which implies $\{b_1\}=\{b_2\}$. Since $g$ is a function, $\{a_1\}=\{a_2\}$, which implies $a_1=a_2$. Contradiction! Therefore, the statement `` If $g$ is onto, then $f$ is one-to-one.'' is true.
+\end{itemize}
+\end{solution}
+\vfill
+\vfill
+\vfill
+\vfill
+\end{parts}
+
+\newpage
+%%Contrapositive - three cases
+\question[8] Prove by contrapositive: Suppose $x,y\in \Z$. If both $xy$ and $x+y$ are even, then both $x$ and $y$ are even.
+
+\begin{solution}
+	Suppose not both $x$ and $y$ are even. Then at least one of them is odd. We want to show that not both $xy$ and $x+y$ are even. 
+	\begin{itemize}
+	\item[Case 1:] Suppose $x$ is even and $y$ is odd. Then there exist $a,b\in \Z$ such that $x=2a$ and $y=2b+1$. Observe $xy=(2a)(2b+1) = 2(a(2b+1))$ is even and $x+y = 2a+2b+1 = 2(a+b)+1$ is odd. Thus not both $xy$ and $x+y$ are even.
+	\item[Case 2:] Suppose $x$ is odd and $y$ is even. Then there exist $a, b\in \Z$ such that $x=2a+1$ and $y=2b$. Observe $xy = (2a+1)(2b)= 2(b(2a+1))$ is even and $x+y = (2a+1) + 2b = 2(a+b)+1$ is odd. Thus not both $xy$ and $x+y$ are even.
+	\item[Case 3:] Suppose $x$ is odd and $y$ is odd. Then there exist $a, b\in \Z$ such that $x=2a+1$ and $y=2b+1$. Observe $xy = (2a+1)(2b+1)= 4ab+2a+2b+1 = 2(2ab+a+b)+1$ is odd and $x+y = (2a+1) + (2b+1) = 2(a+b+1)$ is even. Thus not both $xy$ and $x+y$ are even.
+	\end{itemize}
+	Therefore, if not both $x$ and $y$ are even, then not both $xy$ and $x+y$ are even. By the contrapositive, if both $xy$ and $x+y$ are even, then both $x$ and $y$ are even.
+\end{solution}
+\newpage
+\question[10] For each $n\in \N$, let $H_n$ be defined as follows: 
+$H_0=3, \quad H_1=8,$ for all $n\in \N$ where $n\geq 2$:
+\[ H_n=4H_{n-1}-4H_{n-2}.\]
+
+Prove for all $n\in \N$, $\displaystyle H_n=(3+n)2^n$.
+\textit{Hint: Use Strong Induction.}
+
+\begin{solution}
+\begin{description}
+\item[Base Case:] Consider $n=0$: $H_0 = 3 = (3+0)2^0$. Consider $n=1$: $H_1 = 8 = (3+1) 2^1$.
+\item[Inductive Hypothesis:] Let $k\geq 1$ be an arbitrary natural number such that $0\leq n\leq k$. Assume $H_n = (3+n)2^n$.
+\item[Inductive Step:] Consider $n=k+1$. We want to show $H_{k+1} = (3+(k+1))2^{k+1}$. Observe that 
+\begin{align*}
+H_{k+1} & = 4 H_k - 4H_{k-1}\\
+&= 4(3+k)2^k -4(3+(k-1))2^{k-1} \quad \text{(by Inductive Hypothesis)}\\
+&= 4\cdot 2^{k-1}((3+k)2 - (2+k))\\ 
+&= 2^{k+1} (k+4)\\
+& = 2^{k+1} ( 3 + (k+1)).
+\end{align*}
+\end{description}
+Therefore, strong induction, for all $n\in \N$, $\displaystyle H_n=(3+n)2^n$.
+\end{solution}
+\end{questions}
+
+%%%%%%%%%%%%%%%END-OF-FREE-RESPONSE%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%SCRAP%%%%%%%%%%%%%%%%%
+%\newpage
+%%Scrap
+%\section*{Extra Paper}
+%
+\newpage
+%\pagestyle{empty}
+\section*{This page is intentionally left blank for computations!!!}
+
+%\newpage
+%\section*{This page is intentionally left blank for computations!!!}
+%\newpage
+%%\pagestyle{empty}
+%\section*{This page is intentionally left blank for computations!!!}
+%
+%\newpage
+%\section*{This page is intentionally left blank for computations!!!}
+%%%%%%%%%%%%%%%SCRAP%%%%%%%%%%%%%%%%%
+
+\end{document}  
+
+
+
+
+
+
+
+
+
+
+
+
+
